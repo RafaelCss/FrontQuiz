@@ -1,6 +1,5 @@
-import Head from 'next/head'
-import RenderPlayer from '../Components/Player'
-
+import Head from 'next/head';
+import RenderPlayer from '../Components/Player';
 
 export default function Home() {
   return (
@@ -13,9 +12,9 @@ export default function Home() {
       </Head>
       <main>
         <div>
-         <RenderPlayer/>
+          <RenderPlayer color={'#b46f6f'} />
         </div>
       </main>
     </>
-  )
+  );
 }

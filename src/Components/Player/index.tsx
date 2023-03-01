@@ -1,31 +1,43 @@
-import Jogador from "./style"
+import Jogador from './style';
 
-
-function RenderPlayer (){
-
-  return (
-    <Jogador.Player>
-      <Jogador.Head>
-        <Jogador.Eye/>
-        <Jogador.Eye right />
-        <Jogador.Mouth/>
-      </Jogador.Head>
-      <Jogador.Body />
-      <Jogador.Arm right>
-        <Jogador.Hand />
-      </Jogador.Arm>
-      <Jogador.Arm >
-        <Jogador.Hand />
-      </Jogador.Arm>
-      <Jogador.Leg right>
-        <Jogador.Foot />
-      </Jogador.Leg>
-      <Jogador.Leg>
-        <Jogador.Foot />
-      </Jogador.Leg>
-    </Jogador.Player>
-  )
+interface TypeRenderPlayer {
+  colorBody?: string;
+  colorHead?: string;
+  colorEye?: string;
+  imagem?: string;
+  color?: string;
 }
 
+function RenderPlayer({
+  colorBody,
+  colorHead,
+  imagem,
+  colorEye,
+  color,
+}: TypeRenderPlayer) {
+  return (
+    <Jogador.Player imagem={imagem}>
+      <Jogador.Head color={colorHead}>
+        <Jogador.Eye color={colorEye} />
+        <Jogador.Eye right color={colorEye} />
+        <Jogador.Mouth color={color} />
+      </Jogador.Head>
+      <Jogador.Body color={colorBody}>
+        <Jogador.Arm right color={color}>
+          <Jogador.Hand color={color} />
+        </Jogador.Arm>
+        <Jogador.Arm color={color}>
+          <Jogador.Hand color={color} />
+        </Jogador.Arm>
+        <Jogador.Leg right color={color}>
+          <Jogador.Foot color={color} />
+        </Jogador.Leg>
+        <Jogador.Leg color={color}>
+          <Jogador.Foot color={color} />
+        </Jogador.Leg>
+      </Jogador.Body>
+    </Jogador.Player>
+  );
+}
 
 export default RenderPlayer;
