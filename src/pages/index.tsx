@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import LayoutApp from '../Components/Layout';
 import RenderPlayer from '../Components/Player';
 
 export default function Home() {
@@ -10,11 +11,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div>
-          <RenderPlayer color={'#b46f6f'} />
-        </div>
-      </main>
+      <LayoutApp />
     </>
   );
 }
