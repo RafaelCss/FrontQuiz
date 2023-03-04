@@ -13,7 +13,7 @@ function Footer ({children}: IFooter) {
     <FooterMod>
     <>
       <InstagramOutlined  title="Instagram"/>
-      <TwitterOutlined />
+      <TwitterOutlined title="Twitter" />
       {children}
     </>
     </FooterMod>
