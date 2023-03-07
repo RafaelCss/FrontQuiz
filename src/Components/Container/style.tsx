@@ -1,22 +1,20 @@
 import styled from 'styled-components';
 import { Layout } from 'antd';
-import CampoDeFutebol from './Campo2.png'
-const {Content} = Layout;
-
+import CampoDeFutebol from './Campo2.png';
+const { Content } = Layout;
 
 const ContentMod = styled(Content)`
-  display:block;
+  display: block;
   text-align: center;
   color: #0a0909;
   height: 100vh;
- // background-color:#2bde2563;
-  background-attachment : fixed;
+  // background-color:#2bde2563;
+  background-attachment: fixed;
   background-repeat: initial;
-  object-fit:cover;
+  object-fit: cover;
   background-image: url(${CampoDeFutebol.src});
   background-repeat: no-repeat;
- // background-attachment: scroll;
-`
+  // background-attachment: scroll;
+`;
 
-
-export default ContentMod
+export default ContentMod;

@@ -1,20 +1,12 @@
-import React from "react";
-import ContentMod from "./style";
+import React from 'react';
+import ContentMod from './style';
 
-
-interface IContainer{
-  children ?: React.ReactElement
+interface IContainer {
+  children?: React.ReactElement;
 }
 
-function Container ({children}: IContainer) {
-
-  return (
-    <ContentMod>
-      {children}
-    </ContentMod>
-  )
+function Container({ children }: IContainer) {
+  return <ContentMod>{children}</ContentMod>;
 }
 
-
-
-export default Container
+export default Container;

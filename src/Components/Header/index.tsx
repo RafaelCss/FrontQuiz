@@ -1,20 +1,18 @@
-import { InstagramOutlined, TwitterOutlined } from "@ant-design/icons";
-import React from "react";
-import Menu from "../Menu";
-import HeaderMod from "./style";
+import { InstagramOutlined, TwitterOutlined } from '@ant-design/icons';
+import React from 'react';
+import Menu from '../Menu';
+import HeaderMod from './style';
 
-interface IHeader{
-  children ?: React.ReactElement
+interface IHeader {
+  children?: React.ReactElement;
 }
 
-function Header ({children}: IHeader) {
+function Header({ children }: IHeader) {
   return (
     <HeaderMod>
-      <Menu/>
+      <Menu />
     </HeaderMod>
-  )
+  );
 }
 
-
-
-export default Header
+export default Header;

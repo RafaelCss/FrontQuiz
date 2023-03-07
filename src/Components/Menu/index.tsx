@@ -1,15 +1,15 @@
-import Style from "./style"
+import Style from './style';
 
-function Menu(){
+function Menu() {
+  const listaDeBotoes = ['Home', 'Perguntas', 'Login', 'Cadastre'];
 
-  const listaDeBotoes = ["Home", "Perguntas", "Login","Cadastre"];
-
-  return(
+  return (
     <Style.ContainerMenu>
-      {listaDeBotoes.map(btn => <Style.Button key={btn}>{btn}</Style.Button>)}
+      {listaDeBotoes.map((btn) => (
+        <Style.Button key={btn}>{btn}</Style.Button>
+      ))}
     </Style.ContainerMenu>
-  )
-
+  );
 }
 
-export default Menu
+export default Menu;
