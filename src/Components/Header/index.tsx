@@ -1,5 +1,6 @@
 import { InstagramOutlined, TwitterOutlined } from "@ant-design/icons";
 import React from "react";
+import Menu from "../Menu";
 import HeaderMod from "./style";
 
 interface IHeader{
@@ -7,15 +8,9 @@ interface IHeader{
 }
 
 function Header ({children}: IHeader) {
-
-
   return (
     <HeaderMod>
-    <>
-      <InstagramOutlined  title="Instagram"/>
-      <TwitterOutlined title="Twitter" />
-      {children}
-    </>
+      <Menu/>
     </HeaderMod>
   )
 }

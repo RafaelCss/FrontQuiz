@@ -1,20 +1,21 @@
-import React from 'react';
-import { Layout as LayoutAnt } from 'antd';
+import React, { ReactElement } from 'react';
 import Footer from '../Footer';
 import Header from '../Header';
 import Container from '../Container';
+import LayoutMod from './style';
 
 interface  ILayoutApp{
-  children ?: React.ReactElement
+  children ?: ReactElement
 }
 
 function LayoutApp({children}: ILayoutApp) {
   return (
-      <LayoutAnt>
+      <LayoutMod>
         <Header/>
         <Container/>
         <Footer/>
-      </LayoutAnt>
+        {children}
+      </LayoutMod>
   );
 }
 export default LayoutApp;
