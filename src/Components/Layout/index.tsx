@@ -1,16 +1,18 @@
 import React from 'react';
-import { Layout as LayoutAnt, Space } from 'antd';
-import style  from './style';
+import { Layout as LayoutAnt } from 'antd';
 import Footer from '../Footer';
+import Header from '../Header';
+import Container from '../Container';
 
-const { Header, Content } = LayoutAnt;
+interface  ILayoutApp{
+  children ?: React.ReactElement
+}
 
-
-function LayoutApp() {
+function LayoutApp({children}: ILayoutApp) {
   return (
       <LayoutAnt>
-        <Header style={style.headerStyle}>Header</Header>
-        <Content style={style.contentStyle}>Content</Content>
+        <Header/>
+        <Container/>
         <Footer/>
       </LayoutAnt>
   );

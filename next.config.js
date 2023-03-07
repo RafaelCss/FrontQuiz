@@ -16,4 +16,9 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
 };
+module.exports = {
+  experimental: {
+    forceSwcTransforms: true,
+  },
+}
 module.exports = nextConfig;
