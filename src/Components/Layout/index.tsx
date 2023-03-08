@@ -1,19 +1,13 @@
-import React, { ReactElement } from 'react';
-import Footer from '../Footer';
-import Header from '../Header';
-import Container from '../Container';
+import React, { ReactElement, ReactNode } from 'react';
 import LayoutMod from './style';
 
 interface ILayoutApp {
-  children?: ReactElement;
+  children: ReactNode;
 }
 
 function LayoutApp({ children }: ILayoutApp) {
   return (
-    <LayoutMod>
-      <Header />
-      <Container />
-      <Footer />
+    <LayoutMod suffixCls='Teste'>
       {children}
     </LayoutMod>
   );
