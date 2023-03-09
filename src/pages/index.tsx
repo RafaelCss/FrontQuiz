@@ -3,6 +3,7 @@ import Container from '../Components/Container/Central/index';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import LayoutApp from '../Components/Layout';
+//import { GlobalStyle } from '../Components/Logo/style';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       </Head>
       <LayoutApp>
         <>
+           {/* <GlobalStyle/> */}
           <Header />
           <Container />
           <Footer />
