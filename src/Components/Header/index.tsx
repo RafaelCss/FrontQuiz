@@ -1,4 +1,3 @@
-import { InstagramOutlined, TwitterOutlined } from '@ant-design/icons';
 import React from 'react';
 import Logo from '../Logo';
 import Menu from '../Menu';
