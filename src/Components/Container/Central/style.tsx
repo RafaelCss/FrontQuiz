@@ -6,8 +6,9 @@ const { Content } = Layout;
 const ContentMod = styled(Content)`
   display: block;
   text-align: center;
-  color: #0a0909;
+  color: #fff5f5;
   height: 100vh;
+  width:100vw;
   // background-color:#2bde2563;
   background-attachment: fixed;
   background-repeat: initial;
