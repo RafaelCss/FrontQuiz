@@ -4,9 +4,10 @@ import CampoDeFutebol from './Campo2.png';
 const { Content } = Layout;
 
 const ContentMod = styled(Content)`
-  display: block;
+  display: flex;
   color: #fff5f5;
-  height: 100vh;
+  justify-content: center;
+  height:100%;
   background-size: cover;
   background-position: center;
  // background-attachment: fixed;

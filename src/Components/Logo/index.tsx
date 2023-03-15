@@ -1,11 +1,10 @@
-import RenderPlayer from "../Player";
 import DivLogo from "./style";
 
 
 function Logo(){
   return(
     <DivLogo>
-      Soccer Questions
+     <h1>Soccer Questions</h1>
     </DivLogo>
   )
 }

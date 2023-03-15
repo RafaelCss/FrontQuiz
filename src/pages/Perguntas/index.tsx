@@ -1,4 +1,4 @@
-import App from "@/src/Components/Entidade/Perguntas";
+import ListaPerguntas from "@/src/Components/Entidade/Perguntas";
 import LayoutMod from "@/src/Components/Layout/style";
 
 
@@ -6,7 +6,7 @@ function Perguntas(){
 
   return(
     <LayoutMod>
-      <App/>
+      <ListaPerguntas/>
     </LayoutMod>
   )
 }
