@@ -1,16 +1,14 @@
 import App from "@/src/Components/Entidade/Perguntas";
-import Footer from "@/src/Components/Footer";
-import Header from "@/src/Components/Header";
-import LayoutApp from "@/src/Components/Layout";
+import LayoutMod from "@/src/Components/Layout/style";
 
 
 function Perguntas(){
 
   return(
-  <LayoutApp>
+    <LayoutMod>
       <App/>
-  </LayoutApp>
+    </LayoutMod>
   )
 }
 
-export default Perguntas
+export default Perguntas;

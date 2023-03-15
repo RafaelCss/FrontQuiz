@@ -1,10 +1,7 @@
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Avatar, List, Space } from 'antd';
 import React from 'react';
-import Container from '../../Container/Central';
 import ContentMod from '../../Container/Central/style';
-import Footer from '../../Footer';
-import Header from '../../Header';
 
 const data = Array.from({ length: 23 }).map((_, i) => ({
   href: 'https://ant.design',
@@ -24,12 +21,10 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
 );
 
 const App: React.FC = () => (
-<Container>
-  <>
-  <Header />
+  <ContentMod>
   <List
     itemLayout="vertical"
-    size="large"
+    size="small"
     pagination={{
       onChange: (page) => {
         console.log(page);
@@ -37,11 +32,6 @@ const App: React.FC = () => (
       pageSize: 3,
     }}
     dataSource={data}
-    footer={
-      <div>
-        <b>ant design</b> footer part
-      </div>
-    }
     renderItem={(item) => (
       <List.Item
         key={item.title}
@@ -50,14 +40,6 @@ const App: React.FC = () => (
           <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
           <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
         ]}
-        extra={
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            width={272}
-            alt="logo"
-            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-          />
-        }
       >
         <List.Item.Meta
           avatar={<Avatar src={item.avatar} />}
@@ -68,9 +50,7 @@ const App: React.FC = () => (
       </List.Item>
     )}
   />
-  <Footer />
-  </>
-</Container>
+  </ContentMod>
 );
 
 export default App;
