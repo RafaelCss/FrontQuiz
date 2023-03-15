@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import { useState } from 'react';
 import Style from './style';
 
 function Menu() {
@@ -6,7 +8,10 @@ function Menu() {
   return (
     <Style.ContainerMenu>
       {listaDeBotoes.map((btn) => (
-        <Style.ButtonMod key={btn}>{btn}</Style.ButtonMod>
+      <Link key={btn}
+        href={btn === "Home" ? "/" : btn }>
+          <Style.ButtonMod>{btn}</Style.ButtonMod>
+        </Link>
       ))}
     </Style.ContainerMenu>
   );

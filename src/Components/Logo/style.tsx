@@ -11,7 +11,7 @@ const DivLogo = styled.div`
   display: flex;
   justify-content:center;
   align-items:center;
-  text-align:center;
+  text-align: center;
   width:30vw;
   height:10vh;
   color:white;
