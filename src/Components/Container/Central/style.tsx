@@ -5,16 +5,15 @@ const { Content } = Layout;
 
 const ContentMod = styled(Content)`
   display: block;
-  text-align: center;
-  color: #0a0909;
+  color: #fff5f5;
   height: 100vh;
-  // background-color:#2bde2563;
-  background-attachment: fixed;
-  background-repeat: initial;
-  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+ // background-attachment: fixed;
+ // object-fit: cover;
   background-image: url(${CampoDeFutebol.src});
-  background-repeat: no-repeat;
-  // background-attachment: scroll;
+ // background-repeat:no-repeat;
+//  background-attachment: scroll;
 `;
 
 export default ContentMod;
