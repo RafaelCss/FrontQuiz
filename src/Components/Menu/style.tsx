@@ -7,24 +7,30 @@ interface IButtonMod {
 
 const ContainerMenu = styled.div`
   display: flex;
-  width:70vw;
-  height:30vh;
+  width:50vw;
+  height:10vh;
   flex-direction: row;
   align-items: center;
+  margin:0px 2rem;
   justify-content: space-evenly;
 `;
 
-const ButtonMod = styled.div`
+const ButtonMod = styled.button`
   display : flex;
   justify-content: center;
   align-items:center;
   text-align:center;
   width:80px;
+  height:40px;
+  border-radius:10%;
+  color:white;
   font-family: 'Tilt Warp', cursive;
   font-size:1.2rem;
+  border:none;
+  background-color:#1816164e;
   &:hover{
-    color:#ec7676d8;
-    transition: 0.5s;
+    background-color:#fbf9f916;
+    color:white;
   }
 `;
 

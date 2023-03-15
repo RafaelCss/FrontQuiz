@@ -1,8 +1,10 @@
 import Head from 'next/head';
-import Container from '../Components/Container/Central/index';
+import ContentMod from '../Components/Container/Central/style';
+import ListaPerguntas from '../Components/Entidade/Perguntas';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
-import LayoutApp from '../Components/Layout';
+import LayoutMod from '../Components/Layout/style';
+
 //import { GlobalStyle } from '../Components/Logo/style';
 
 export default function Home() {
@@ -14,14 +16,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <LayoutApp>
+      <LayoutMod>
         <>
            {/* <GlobalStyle/> */}
           <Header />
-          <Container />
+          <ListaPerguntas/>
           <Footer />
         </>
-      </LayoutApp>
+      </LayoutMod>
     </>
   );
 }
