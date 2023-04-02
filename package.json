@@ -7,7 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write \"**/*.{ts,tsx}\""
+    "prettier": "prettier --write \"**/*.{ts,tsx}\"",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown",
+    "*.{js,css,md}": "prettier --write"
   },
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -25,9 +30,11 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26",
-    "husky": "^8.0.3",
+    "husky": "^8.0.0",
     "install": "0.13.0",
+    "lint-staged": "^13.2.0",
     "npm": "9.6.3",
-    "prettier": "2.8.7"
+    "prettier": "2.8.7",
+    "pretty-quick": "^3.1.3"
   }
 }
