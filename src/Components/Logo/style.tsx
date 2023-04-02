@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 /* import { createGlobalStyle } from 'styled-components';
 
@@ -9,16 +9,14 @@ import styled from "styled-components";
 
 const DivLogo = styled.div`
   display: flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  width:30vw;
-  height:10vh;
-  color:white;
+  width: 30vw;
+  height: 10vh;
+  color: white;
   font-family: 'Tilt Warp', cursive;
-  background-color:red;
-`
-
-
+  background-color: red;
+`;
 
 export default DivLogo;

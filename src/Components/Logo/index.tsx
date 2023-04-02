@@ -1,13 +1,11 @@
-import DivLogo from "./style";
+import DivLogo from './style';
 
-
-function Logo(){
-  return(
+function Logo() {
+  return (
     <DivLogo>
-     <h1>Soccer Questions</h1>
+      <h1>Soccer Questions</h1>
     </DivLogo>
-  )
+  );
 }
 
-
-export default Logo
+export default Logo;

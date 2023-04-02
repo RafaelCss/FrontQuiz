@@ -10,7 +10,7 @@ interface IHeader {
 function Header({ children }: IHeader) {
   return (
     <HeaderMod>
-      <Logo/>
+      <Logo />
       <Menu />
     </HeaderMod>
   );

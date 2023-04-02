@@ -7,8 +7,7 @@ function Menu() {
   return (
     <Style.ContainerMenu>
       {listaDeBotoes.map((btn) => (
-      <Link key={btn}
-        href={btn === "Home" ? "/" : btn }>
+        <Link key={btn} href={btn === 'Home' ? '/' : btn}>
           <Style.ButtonMod>{btn}</Style.ButtonMod>
         </Link>
       ))}

@@ -7,14 +7,14 @@ const ContentMod = styled(Content)`
   display: flex;
   color: #fff5f5;
   justify-content: center;
-  height:100%;
+  height: 100%;
   background-size: cover;
   background-position: center;
- // background-attachment: fixed;
- // object-fit: cover;
-  background-image: url(${CampoDeFutebol.src});
- // background-repeat:no-repeat;
-//  background-attachment: scroll;
+  // background-attachment: fixed;
+  // object-fit: cover;
+  //  background-image: url(${CampoDeFutebol.src});
+  // background-repeat:no-repeat;
+  //  background-attachment: scroll;
 `;
 
 export default ContentMod;
