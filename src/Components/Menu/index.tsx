@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useState } from 'react';
 import Style from './style';
 
 function Menu() {
