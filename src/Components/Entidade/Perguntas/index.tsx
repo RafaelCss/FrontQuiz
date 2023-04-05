@@ -1,8 +1,7 @@
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Avatar, List, Space } from 'antd';
 import React from 'react';
-import ContentMod from '../../Container/Central/style';
-import ContainerLista from '../../Container/ListaPerguntas/style';
+import ContainerLista from '../../Container/Lista/style';
 
 const data = Array.from({ length: 23 }).map((_, i) => ({
   href: 'https://ant.design',
@@ -23,7 +22,7 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
 
 function ListaPerguntas() {
   return (
-    <ContentMod>
+    <>
       <ContainerLista>
         <List
           itemLayout="vertical"
@@ -54,8 +53,7 @@ function ListaPerguntas() {
                   text="2"
                   key="list-vertical-message"
                 />,
-              ]}
-            >
+              ]}>
               <List.Item.Meta
                 avatar={<Avatar src={item.avatar} />}
                 title={
@@ -72,7 +70,7 @@ function ListaPerguntas() {
           )}
         />
       </ContainerLista>
-    </ContentMod>
+    </>
   );
 }
 

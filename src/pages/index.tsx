@@ -4,10 +4,11 @@ import ListaPerguntas from '../Components/Entidade/Perguntas';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import LayoutMod from '../Components/Layout/style';
+import Home from '../Components/Entidade/Home';
 
 //import { GlobalStyle } from '../Components/Logo/style';
 
-export default function Home() {
+export default function HomeApp() {
   return (
     <>
       <Head>
@@ -19,7 +20,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ListaPerguntas />
+
+      <Home />
     </>
   );
 }

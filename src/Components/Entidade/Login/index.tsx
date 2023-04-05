@@ -1,14 +1,11 @@
-import ContentMod from '../../Container/Central/style';
-import ContainerLista from '../../Container/ListaPerguntas/style';
+import ContainerLista from '../../Container/Lista/style';
 import Formulario from './formulario';
 
 function Pagina() {
   return (
-    <ContentMod>
-      <ContainerLista>
-        <Formulario />
-      </ContainerLista>
-    </ContentMod>
+    <ContainerLista>
+      <Formulario />
+    </ContainerLista>
   );
 }
 

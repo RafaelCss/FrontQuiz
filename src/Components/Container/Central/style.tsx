@@ -10,10 +10,9 @@ const ContentMod = styled(Content)`
   height: 100%;
   background-size: cover;
   background-position: center;
-
   // background-attachment: fixed;
   // object-fit: cover;
-  //  background-image: url(${CampoDeFutebol.src});
+  background-image: url(${CampoDeFutebol.src});
   // background-repeat:no-repeat;
   //  background-attachment: scroll;
 `;
