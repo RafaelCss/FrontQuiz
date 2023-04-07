@@ -17,8 +17,8 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div style={{ display: 'block' }}>
-      <Carousel afterChange={onChange}>
+    <></>
+    /*       <Carousel afterChange={onChange}>
         <div>
           <h3 style={contentStyle}>1</h3>
         </div>
@@ -26,13 +26,13 @@ const Home: React.FC = () => {
           <h3 style={contentStyle}>2</h3>
         </div>
         <div>
+
           <h3 style={contentStyle}>3</h3>
         </div>
         <div>
           <h3 style={contentStyle}>4</h3>
         </div>
-      </Carousel>
-    </div>
+      </Carousel> */
   );
 };
 
