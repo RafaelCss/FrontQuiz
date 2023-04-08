@@ -48,8 +48,7 @@ function Formulario() {
       </Form.Item>
       <Space direction="horizontal">
         <div
-          style={{ width: '500px', display: 'flex', justifyContent: 'center' }}
-        >
+          style={{ width: '500px', display: 'flex', justifyContent: 'center' }}>
           <Space direction="horizontal">
             <Button onClick={validarForm}>Confirmar</Button>
             <Button onClick={cancelarEnvio}>Cancelar</Button>
