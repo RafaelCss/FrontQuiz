@@ -1,6 +1,5 @@
 import React from 'react';
 import { Carousel } from 'antd';
-import ContainerLista from '../../Container/Lista/style';
 
 const contentStyle: React.CSSProperties = {
   margin: 0,

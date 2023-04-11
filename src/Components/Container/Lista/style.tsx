@@ -7,9 +7,10 @@ const ContainerLista = styled.main`
   align-items: center;
   margin-top: 10rem;
   margin-bottom: 10rem;
-  background-color: black;
+  background-color: #0c0c0c66;
   width: 80vw;
   height: 100vh;
+  color: black;
 `;
 
 export default ContainerLista;
