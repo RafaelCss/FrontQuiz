@@ -6,7 +6,6 @@ export const InputMod = styled(Input)`
   height: 4rem;
   width: 300px;
   border: none;
-  color: white;
 `;
 
 export const InputPasswordMod = styled(Input.Password)`
