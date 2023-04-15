@@ -79,12 +79,13 @@ function Formulario() {
             style={{ height: '4rem', border: 'none' }}
           />
         </Form.Item>
-        <Space direction="horizontal">
+        <div
+          style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
           <Space direction="horizontal">
             <Button onClick={validarForm}>Confirmar</Button>
             <Button onClick={cancelarEnvio}>Cancelar</Button>
           </Space>
-        </Space>
+        </div>
       </Form>
     </MainFormulario>
   );
