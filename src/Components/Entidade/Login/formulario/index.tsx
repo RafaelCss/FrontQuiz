@@ -82,7 +82,9 @@ function Formulario() {
         <div
           style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
           <Space direction="horizontal">
-            <Button onClick={validarForm}>Confirmar</Button>
+            <Button id="btn-confirmar" onClick={validarForm}>
+              Confirmar
+            </Button>
             <Button onClick={cancelarEnvio}>Cancelar</Button>
           </Space>
         </div>
