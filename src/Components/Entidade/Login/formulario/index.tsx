@@ -54,6 +54,7 @@ function Formulario() {
           rules={[{ required: true, message: 'Nome é obrigatório' }]}>
           <InputMod
             name="nome"
+            id="input-nome"
             placeholder={placeHolder('seu usuário')}
             autoComplete="off"
           />
@@ -63,6 +64,7 @@ function Formulario() {
           label={'Email'}
           rules={[{ required: true, message: 'Email é obrigatório' }]}>
           <InputMod
+            id="input-email"
             name="email"
             placeholder={placeHolder('seu email')}
             autoComplete="off"
@@ -73,6 +75,7 @@ function Formulario() {
           label={'Senha'}
           rules={[{ required: true, message: 'Senha é obrigatória' }]}>
           <Input.Password
+            id="input-senha"
             name="senha"
             placeholder={placeHolder('sua senha')}
             autoComplete="off"

@@ -4,40 +4,36 @@ import {
   cleanup,
   fireEvent,
   getByText,
+  queryAllByAltText,
   queryByAttribute,
   render,
   screen,
   waitFor,
 } from '@testing-library/react';
-import Formulario from './formulario/index';
-import ContainerLista from '../../Container/Lista/style';
+import Pagina from '.';
 
 //Arquivo necessita ser invocado para funcionamento das funções do Jest
 import '../../../Testes/matchMedia';
 
 const queryById = queryByAttribute.bind(null, 'id');
 
-describe('Testa o Componente Formulario:', () => {
+describe('Testa se a pagina está renderizada', () => {
   it('Verifica se o form   está sendo renderizado:', async () => {
     // arrange
     // act
 
     act(() => {
-      render(
-        <ContainerLista>
-          <Formulario key={'et'} />
-        </ContainerLista>
-      );
+      render(<Pagina />);
     });
 
     // assert
     await waitFor(() => queryById(document, `form`));
 
-    const form = queryById(document, `form`);
+    const titulo = getByText(document, 'Realize seu cadastro');
 
-    expect(screen.getByText('Senha')).toBeInTheDocument();
-    expect(form).not.toBeNull();
-    expect(form).toBeInTheDocument();
+    expect(screen.getByText('Realize seu cadastro')).toBeInTheDocument();
+    expect(titulo).not.toBeNull();
+    expect(titulo).toBeInTheDocument();
   });
 
   it('Verifica se o botão em   está sendo renderizado:', async () => {
@@ -45,11 +41,7 @@ describe('Testa o Componente Formulario:', () => {
     // act
 
     act(() => {
-      render(
-        <ContainerLista>
-          <Formulario key={'et'} />
-        </ContainerLista>
-      );
+      render(<Pagina />);
     });
 
     // assert
