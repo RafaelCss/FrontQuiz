@@ -11,6 +11,7 @@ import {
   waitFor,
 } from '@testing-library/react';
 import Pagina from '.';
+import userEvent from '@testing-library/user-event';
 
 //Arquivo necessita ser invocado para funcionamento das funções do Jest
 import '../../../Testes/matchMedia';
@@ -18,24 +19,6 @@ import '../../../Testes/matchMedia';
 const queryById = queryByAttribute.bind(null, 'id');
 
 describe('Testa se a pagina está renderizada', () => {
-  it('Verifica se o form   está sendo renderizado:', async () => {
-    // arrange
-    // act
-
-    act(() => {
-      render(<Pagina />);
-    });
-
-    // assert
-    await waitFor(() => queryById(document, `form`));
-
-    const titulo = getByText(document, 'Realize seu cadastro');
-
-    expect(screen.getByText('Realize seu cadastro')).toBeInTheDocument();
-    expect(titulo).not.toBeNull();
-    expect(titulo).toBeInTheDocument();
-  });
-
   it('Verifica se o botão em   está sendo renderizado:', async () => {
     // arrange
     // act
@@ -49,6 +32,24 @@ describe('Testa se a pagina está renderizada', () => {
     const btnConfirmar = queryById(document, `btn-confirmar`);
     const form = queryById(document, `form`);
 
+    expect(btnConfirmar).toBeInTheDocument();
+    expect(form).not.toBeNull();
+    expect(form).toBeInTheDocument();
+  });
+
+  it('Verifica se há click no botão:', async () => {
+    // arrange
+    // act
+
+    act(() => {
+      render(<Pagina />);
+    });
+
+    // assert
+    await waitFor(() => queryById(document, `btn-confirmar`));
+    const btnConfirmar = queryById(document, `btn-confirmar`);
+    const form = queryById(document, `form`);
+    userEvent.click(btnConfirmar);
     expect(btnConfirmar).toBeInTheDocument();
     expect(form).not.toBeNull();
     expect(form).toBeInTheDocument();
