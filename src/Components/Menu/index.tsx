@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Style from './style';
 
 function Menu() {
-  const listaDeBotoes = ['Home', 'Perguntas', 'Logar', 'Cadastre'];
+  const listaDeBotoes = ['Home', 'Perguntas', 'Logar'];
 
   return (
     <Style.ContainerMenu>
