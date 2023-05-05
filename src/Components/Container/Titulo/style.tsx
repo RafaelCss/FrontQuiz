@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 const Titulo = styled.div`
-  display: block;
-  justify-content: center;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
   height: 5%;
   width: 100%;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 5rem;
   text-align: center;
   align-items: center;
