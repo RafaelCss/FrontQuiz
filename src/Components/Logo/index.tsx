@@ -1,11 +1,7 @@
 import DivLogo from './style';
 
 function Logo() {
-  return (
-    <DivLogo>
-      <h1>Soccer Questions</h1>
-    </DivLogo>
-  );
+  return <DivLogo>Soccer Questions</DivLogo>;
 }
 
 export default Logo;

@@ -10,11 +10,10 @@ import styled from 'styled-components';
 const DivLogo = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  text-align: center;
   width: 30vw;
   height: 10vh;
   color: white;
+  font-size: 1.5em;
   font-family: 'Tilt Warp', cursive;
   background-color: red;
 `;
