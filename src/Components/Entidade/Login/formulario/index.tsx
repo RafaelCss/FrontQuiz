@@ -1,5 +1,5 @@
 import { InputMod, InputPasswordMod } from '@/src/Components/Input/style';
-import { Button, Form, Input, Space } from 'antd';
+import { Button, Form, Input, Space, Switch } from 'antd';
 import { RequiredMark, useForm } from 'antd/es/form/Form';
 import { useState } from 'react';
 import MainFormulario from './style';
@@ -18,6 +18,7 @@ function Formulario() {
   const [form] = Form.useForm<IFormulario>();
   const [requiredMark, setRequiredMarkType] =
     useState<RequiredMark>('optional');
+  const [criarLogin, setCriarLogin] = useState<boolean>(false);
 
   const onRequiredTypeChange = ({
     requiredMarkValue,
@@ -40,6 +41,11 @@ function Formulario() {
     message: 'este campo é invalido',
   };
 
+  const onChange = (checked: boolean) => {
+    console.log(criarLogin);
+    setCriarLogin(checked);
+  };
+
   return (
     <MainFormulario>
       <Form
@@ -48,17 +54,19 @@ function Formulario() {
         layout="vertical"
         requiredMark={requiredMark}
         onValuesChange={onRequiredTypeChange}>
-        <Form.Item
-          name={['nome']}
-          label="Nome"
-          rules={[{ required: true, message: 'Nome é obrigatório' }]}>
-          <InputMod
-            name="nome"
-            id="input-nome"
-            placeholder={placeHolder('seu usuário')}
-            autoComplete="off"
-          />
-        </Form.Item>
+        {criarLogin && (
+          <Form.Item
+            name={['nome']}
+            label="Nome"
+            rules={[{ required: true, message: 'Nome é obrigatório' }]}>
+            <InputMod
+              name="nome"
+              id="input-nome"
+              placeholder={placeHolder('seu usuário')}
+              autoComplete="off"
+            />
+          </Form.Item>
+        )}
         <Form.Item
           name={['email']}
           label={'Email'}
@@ -91,6 +99,9 @@ function Formulario() {
             <Button onClick={cancelarEnvio}>Cancelar</Button>
           </Space>
         </div>
+        <Form.Item name={'checked'} label={'Não possuo cadastro'}>
+          <Switch id="checked" onChange={onChange} />
+        </Form.Item>
       </Form>
     </MainFormulario>
   );

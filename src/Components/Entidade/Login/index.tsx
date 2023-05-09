@@ -17,10 +17,7 @@ function Pagina() {
   return (
     <ContainerFormulario>
       <Titulo>
-        <div>
-          <label>Não possuo cadastro!</label>
-          <Switch checked defaultChecked onChange={onChange} />
-        </div>
+        <div></div>
         <h2>Realize seu cadastro</h2>
       </Titulo>
       <Formulario />
