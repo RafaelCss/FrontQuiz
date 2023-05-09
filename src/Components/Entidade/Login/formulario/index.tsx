@@ -1,9 +1,11 @@
 import { InputMod, InputPasswordMod } from '@/src/Components/Input/style';
-import { Button, Form, Input, Space, Switch } from 'antd';
+import { Button, Checkbox, Form, Input, Space, Switch } from 'antd';
 import { RequiredMark, useForm } from 'antd/es/form/Form';
 import { useState } from 'react';
 import MainFormulario from './style';
 import { Rule } from 'antd/es/form';
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { CheckboxChangeEvent } from 'antd/es/checkbox';
 //import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 interface IFormulario {
@@ -18,7 +20,7 @@ function Formulario() {
   const [form] = Form.useForm<IFormulario>();
   const [requiredMark, setRequiredMarkType] =
     useState<RequiredMark>('optional');
-  const [criarLogin, setCriarLogin] = useState<boolean>(false);
+  const [checked, setChecked] = useState(true);
 
   const onRequiredTypeChange = ({
     requiredMarkValue,
@@ -41,9 +43,8 @@ function Formulario() {
     message: 'este campo é invalido',
   };
 
-  const onChange = (checked: boolean) => {
-    console.log(criarLogin);
-    setCriarLogin(checked);
+  const onChange = (e: CheckboxChangeEvent) => {
+    setChecked(e.target.checked);
   };
 
   return (
@@ -54,7 +55,7 @@ function Formulario() {
         layout="vertical"
         requiredMark={requiredMark}
         onValuesChange={onRequiredTypeChange}>
-        {criarLogin && (
+        {checked && (
           <Form.Item
             name={['nome']}
             label="Nome"
@@ -99,8 +100,10 @@ function Formulario() {
             <Button onClick={cancelarEnvio}>Cancelar</Button>
           </Space>
         </div>
-        <Form.Item name={'checked'} label={'Não possuo cadastro'}>
-          <Switch id="checked" onChange={onChange} />
+        <Form.Item name={'checked'}>
+          <Checkbox checked={checked} onChange={onChange}>
+            Não possuo cadastro.
+          </Checkbox>
         </Form.Item>
       </Form>
     </MainFormulario>
