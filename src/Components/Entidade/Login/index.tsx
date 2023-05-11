@@ -17,7 +17,7 @@ function Pagina() {
   return (
     <ContainerFormulario>
       <Titulo>
-        <h2>Realize seu cadastro</h2>
+        <h2>Realize seu cadastro:</h2>
       </Titulo>
       <Formulario />
     </ContainerFormulario>
