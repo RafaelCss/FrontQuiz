@@ -1,26 +1,23 @@
-import { InputMod, InputPasswordMod } from '@/src/Components/Input/style';
-import { Button, Checkbox, Form, Input, Space, Switch } from 'antd';
-import { RequiredMark, useForm } from 'antd/es/form/Form';
-import { useState } from 'react';
+import { InputMod } from '@/src/Components/Input/style';
+import { Button, Checkbox, Form, Input, Space } from 'antd';
+import { RequiredMark } from 'antd/es/form/Form';
+import { Dispatch, SetStateAction, useState } from 'react';
 import MainFormulario from './style';
-import { Rule } from 'antd/es/form';
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 //import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 interface IFormulario {
-  nome?: string;
-  email?: string;
-  senha?: string;
+  setChecked: Dispatch<SetStateAction<boolean>>;
+  checked: boolean;
 }
 
 const placeHolder = (item: string) => `Digite ${item}`;
 
-function Formulario() {
+function Formulario({ setChecked, checked }: IFormulario) {
   const [form] = Form.useForm<IFormulario>();
   const [requiredMark, setRequiredMarkType] =
     useState<RequiredMark>('optional');
-  const [checked, setChecked] = useState(true);
 
   const onRequiredTypeChange = ({
     requiredMarkValue,

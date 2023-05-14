@@ -2,24 +2,29 @@ import { Switch } from 'antd';
 import ContainerFormulario from '../../Container/Formulario/style';
 import Titulo from '../../Container/Titulo/style';
 import Formulario from './formulario';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const logar = 'Faça Login';
 const cadastro = 'Realize seu cadastro';
 
 function Pagina() {
-  const [criarLogin, setCriarLogin] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean>(false);
+  const [labelForm, setLabelForm] = useState<string>();
 
-  const onChange = (checked: boolean) => {
-    setCriarLogin(checked);
-  };
+  useEffect(() => {
+    if (checked) {
+      setLabelForm('Realize seu cadastro:');
+    } else {
+      setLabelForm('Faça Login:');
+    }
+  }, [checked]);
 
   return (
     <ContainerFormulario>
       <Titulo>
-        <h2>Realize seu cadastro:</h2>
+        <h2>{labelForm}</h2>
       </Titulo>
-      <Formulario />
+      <Formulario setChecked={setChecked} checked={checked} />
     </ContainerFormulario>
   );
 }
