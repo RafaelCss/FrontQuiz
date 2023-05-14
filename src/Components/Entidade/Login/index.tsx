@@ -4,8 +4,8 @@ import Titulo from '../../Container/Titulo/style';
 import Formulario from './formulario';
 import { useEffect, useState } from 'react';
 
-const logar = 'Faça Login';
-const cadastro = 'Realize seu cadastro';
+const logar = 'Faça Login:';
+const cadastro = 'Realize seu cadastro:';
 
 function Pagina() {
   const [checked, setChecked] = useState<boolean>(false);
@@ -13,9 +13,9 @@ function Pagina() {
 
   useEffect(() => {
     if (checked) {
-      setLabelForm('Realize seu cadastro:');
+      setLabelForm(cadastro);
     } else {
-      setLabelForm('Faça Login:');
+      setLabelForm(logar);
     }
   }, [checked]);
 
