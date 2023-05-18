@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["Formulario", "Parens"]
+  "cSpell.words": ["Formulario", "Parens"],
+  "dotenv.enableAutocloaking": false
 }
