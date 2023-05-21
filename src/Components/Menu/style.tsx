@@ -20,12 +20,12 @@ const ButtonMod = styled.button`
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 80px;
+  width: 100px;
   height: 40px;
   border-radius: 10%;
   color: white;
   font-family: 'Tilt Warp', cursive;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: none;
   background-color: #1816164e;
   &:hover {
