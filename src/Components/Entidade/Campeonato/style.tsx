@@ -9,3 +9,7 @@ export const ContainerTabela = styled.div`
   justify-content: center;
   background-color: black;
 `;
+
+export const CelulaTabela = styled.td`
+  text-align: center;
+`;

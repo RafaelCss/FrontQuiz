@@ -1,4 +1,4 @@
-import { ContainerTabela } from './style';
+import { ContainerTabela, CelulaTabela } from './style';
 
 function TabelaCampeonato() {
   return (
@@ -18,6 +18,19 @@ function TabelaCampeonato() {
             <th>Últimos jogos</th>
           </tr>
         </thead>
+        <tbody>
+          <tr>
+            <CelulaTabela>Flamengo</CelulaTabela>
+            <CelulaTabela>15</CelulaTabela>
+            <CelulaTabela>3</CelulaTabela>
+            <CelulaTabela>2</CelulaTabela>
+            <CelulaTabela>2</CelulaTabela>
+            <CelulaTabela>10</CelulaTabela>
+            <CelulaTabela>5</CelulaTabela>
+            <CelulaTabela>10</CelulaTabela>
+            <CelulaTabela>10</CelulaTabela>
+          </tr>
+        </tbody>
       </table>
     </ContainerTabela>
   );
