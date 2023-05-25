@@ -29,7 +29,7 @@ function TabelaCampeonato() {
                 width={20}
               />
             </CelulaTabela>
-            <CelulaTabela>3</CelulaTabela>
+            <CelulaTabela>texto</CelulaTabela>
             <CelulaTabela>2</CelulaTabela>
             <CelulaTabela>2</CelulaTabela>
             <CelulaTabela>10</CelulaTabela>
