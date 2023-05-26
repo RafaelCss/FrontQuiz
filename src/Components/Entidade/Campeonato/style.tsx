@@ -5,7 +5,7 @@ export const ContainerTabela = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 80vw;
-  padding-top: 180px;
+  padding-top: 100px;
   align-items: center;
   background-color: black;
 `;
