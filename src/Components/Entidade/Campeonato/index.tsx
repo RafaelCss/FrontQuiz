@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { ContainerTabela, CelulaTabela } from './style';
+import { ContainerTabela, Td, Th } from './style';
 
 function TabelaCampeonato() {
   return (
@@ -8,34 +8,34 @@ function TabelaCampeonato() {
       <table>
         <thead>
           <tr>
-            <th>Time</th>
-            <th>Pontos</th>
-            <th>Vitorias</th>
-            <th>Empates</th>
-            <th>Derrotas</th>
-            <th>Gols marcados</th>
-            <th>Gols sofridos</th>
-            <th>Saldo-Gols</th>
-            <th>Últimos jogos</th>
+            <Th>Time</Th>
+            <Th>Pontos</Th>
+            <Th>Vitorias</Th>
+            <Th>Empates</Th>
+            <Th>Derrotas</Th>
+            <Th>Gols marcados</Th>
+            <Th>Gols sofridos</Th>
+            <Th>Saldo-Gols</Th>
+            <Th>Últimos jogos</Th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <CelulaTabela>Botafogo</CelulaTabela>
-            <CelulaTabela>
+            <Td>Botafogo</Td>
+            <Td>
               <img
                 src="https://cdn.api-futebol.com.br/escudos/638d349052558.svg"
                 alt="Botafogo"
                 width={20}
               />
-            </CelulaTabela>
-            <CelulaTabela>texto</CelulaTabela>
-            <CelulaTabela>2</CelulaTabela>
-            <CelulaTabela>2</CelulaTabela>
-            <CelulaTabela>10</CelulaTabela>
-            <CelulaTabela>5</CelulaTabela>
-            <CelulaTabela>10</CelulaTabela>
-            <CelulaTabela>10</CelulaTabela>
+            </Td>
+            <Td>texto</Td>
+            <Td>2</Td>
+            <Td>2</Td>
+            <Td>10</Td>
+            <Td>5</Td>
+            <Td>10</Td>
+            <Td>10</Td>
           </tr>
         </tbody>
       </table>
