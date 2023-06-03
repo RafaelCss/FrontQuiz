@@ -12,11 +12,13 @@ export const ContainerTabela = styled.div`
 
 export const Td = styled.td`
   text-align: center;
+  padding: 3px 10px;
   border: dashed 1px #d4d4cff4;
 `;
 
 export const Th = styled.th`
   text-align: center;
+  padding: 3px 10px;
   border: solid 1px #d4d4cff4;
   margin-bottom: 5px;
 `;
