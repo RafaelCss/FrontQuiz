@@ -1,6 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import { ContainerTabela, Td, Th } from './style';
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import {
+  CheckOutlined,
+  CloseOutlined,
+  MinusCircleOutlined,
+} from '@ant-design/icons';
 function TabelaCampeonato() {
   return (
     <ContainerTabela>
@@ -36,8 +40,13 @@ function TabelaCampeonato() {
             <Td>5</Td>
             <Td>10</Td>
             <Td>
-              <CloseOutlined style={{ color: '#f80808' }} />
-              <CheckOutlined style={{ color: '#52c41a' }} />
+              <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                <CloseOutlined style={{ color: '#f80808', fontSize: '13px' }} />
+                <CheckOutlined style={{ color: '#52c41a', fontSize: '12px' }} />
+                <MinusCircleOutlined
+                  style={{ color: '#afb1aedb', fontSize: '12px' }}
+                />
+              </div>
             </Td>
           </tr>
         </tbody>
