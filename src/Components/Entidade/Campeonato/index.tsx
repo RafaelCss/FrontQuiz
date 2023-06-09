@@ -5,7 +5,12 @@ import {
   CloseOutlined,
   MinusCircleOutlined,
 } from '@ant-design/icons';
+import servico from '../../../Func/servicos/index';
 function TabelaCampeonato() {
+  const buscaDeDadosTabela: any = async () => {
+    return await servico.getDadosTabela().then((res) => res);
+  };
+
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>
