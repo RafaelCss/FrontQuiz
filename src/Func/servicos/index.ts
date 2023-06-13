@@ -1,14 +1,21 @@
 /* eslint-disable import/no-anonymous-default-export */
+
+import { ITabelaCampeonato } from '@/src/Components/Entidade/Campeonato';
 import api from '../configAxios';
-
-async function getDadosTabela() {
-  const resultado = (await api.get('TabelaCampeonato')).data;
-  return resultado;
+interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
+  totalCount: number;
+  pageSize: number;
+  pageIndex: number;
 }
 
-async function postCadastroUsuario(dados: any) {
-  const resultado = (await api.post('TabelaCampeonato', dados)).data;
-  return resultado;
-}
+const getDadosTabela = async () => {
+  return await api
+    .get<ApiResponse<ITabelaCampeonato[]>>('Tabela')
+    .then((res) => res.data)
+    .catch((err) => err);
+};
 
-export default { getDadosTabela, postCadastroUsuario };
+export default { getDadosTabela };

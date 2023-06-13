@@ -5,11 +5,54 @@ import {
   CloseOutlined,
   MinusCircleOutlined,
 } from '@ant-design/icons';
+
+import useSWR from 'swr';
+interface Time {
+  timeId: number;
+  nomePopular: string;
+  sigla: string;
+  escudo: string;
+}
+
+interface Id {
+  timestamp: number;
+  machine: number;
+  pid: number;
+  increment: number;
+  creationTime: string;
+}
+
+export interface ITabelaCampeonato {
+  posicao: number;
+  pontos: number;
+  time: Time;
+  jogos: number;
+  vitorias: number;
+  empates: number;
+  derrotas: number;
+  golsPro: number;
+  golsContra: number;
+  saldoGols: number;
+  aproveitamento: number;
+  variacaoPosicao: number;
+  ultimosJogos: string[];
+  _Id: Id;
+  dataDeCriacao: string;
+  notifications: any[];
+  isValid: boolean;
+}
 import servico from '../../../Func/servicos/index';
+import { useEffect, useState } from 'react';
+import { Space } from 'antd';
 function TabelaCampeonato() {
-  const buscaDeDadosTabela: any = async () => {
-    return await servico.getDadosTabela().then((res) => res);
-  };
+  const {
+    data: data,
+    error,
+    isLoading,
+  } = useSWR('Tabela', async () => await servico.getDadosTabela());
+  const [dadosTabela, setDadosTabela] = useState<ITabelaCampeonato[]>(
+    data?.data.tabela
+  );
 
   return (
     <ContainerTabela>
@@ -29,8 +72,61 @@ function TabelaCampeonato() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <Td>Botafogo</Td>
+          {dadosTabela &&
+            dadosTabela.map((time) => (
+              <tr key={time._Id.pid}>
+                <Td>
+                  <Space direction="horizontal" style={{ display: 'flex' }}>
+                    {time.posicao}
+                    <img src={time.time.escudo} alt="Botafogo" width={20} />
+                    {time.time.nomePopular}
+                  </Space>
+                </Td>
+                <Td>{time.pontos}</Td>
+                <Td>{time.vitorias}</Td>
+                <Td>{time.empates}</Td>
+                <Td>{time.derrotas}</Td>
+                <Td>{time.golsPro}</Td>
+                <Td></Td>
+                <Td>{time.saldoGols}</Td>
+                <Td>
+                  {time.ultimosJogos.map((item) => {
+                    return (
+                      <>
+                        {item === 'd' && (
+                          <CloseOutlined
+                            style={{
+                              color: '#f80808',
+                              fontSize: '13px',
+                              margin: '1px 1px',
+                            }}
+                          />
+                        )}
+                        {item === 'v' && (
+                          <CheckOutlined
+                            style={{
+                              color: '#52c41a',
+                              fontSize: '12px',
+                              margin: '1px 1px',
+                            }}
+                          />
+                        )}
+                        {item === 'e' && (
+                          <MinusCircleOutlined
+                            style={{
+                              color: '#afb1aedb',
+                              fontSize: '12px',
+                              margin: '1px 1px',
+                            }}
+                          />
+                        )}
+                      </>
+                    );
+                  })}
+                </Td>
+              </tr>
+            ))}
+          {/* <Td>Botafogo</Td>
             <Td>
               <img
                 src="https://cdn.api-futebol.com.br/escudos/638d349052558.svg"
@@ -52,8 +148,7 @@ function TabelaCampeonato() {
                   style={{ color: '#afb1aedb', fontSize: '12px' }}
                 />
               </div>
-            </Td>
-          </tr>
+            </Td> */}
         </tbody>
       </table>
     </ContainerTabela>

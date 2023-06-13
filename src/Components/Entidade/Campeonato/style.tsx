@@ -5,9 +5,10 @@ export const ContainerTabela = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 80vw;
-  padding-top: 100px;
+  padding-top: 30px;
   align-items: center;
   background-color: black;
+  margin: 100px 50px;
 `;
 
 export const Td = styled.td`

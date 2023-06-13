@@ -1,4 +1,12 @@
 {
-  "cSpell.words": ["Botafogo", "Celula", "Formulario", "Gols", "Parens"],
+  "cSpell.words": [
+    "Botafogo",
+    "Celula",
+    "Formulario",
+    "Gols",
+    "Parens",
+    "posicao",
+    "ultimos"
+  ],
   "dotenv.enableAutocloaking": false
 }
