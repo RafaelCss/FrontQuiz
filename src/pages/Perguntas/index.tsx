@@ -1,4 +1,4 @@
-import ListaPerguntas from '@/src/Components/Entidade/Perguntas';
+import ListaPerguntas from '@/Components/Entidade/Perguntas';
 
 function Perguntas() {
   return <ListaPerguntas />;

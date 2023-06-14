@@ -1,4 +1,4 @@
-import { InputMod } from '@/src/Components/Input/style';
+import { InputMod } from '@/Components/Input/style';
 import { Button, Checkbox, Form, Input, Space } from 'antd';
 import { RequiredMark } from 'antd/es/form/Form';
 import { Dispatch, SetStateAction, useState } from 'react';

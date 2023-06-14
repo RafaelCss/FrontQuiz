@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 
-import { ITabelaCampeonato } from '@/src/Components/Entidade/Campeonato';
+import { ITabelaCampeonato } from '@/Components/Entidade/Campeonato';
 import api from '../configAxios';
 interface ApiResponse<T> {
   success: boolean;

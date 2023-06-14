@@ -1,4 +1,4 @@
-import TabelaCampeonato from '@/src/Components/Entidade/Campeonato';
+import TabelaCampeonato from '@/Components/Entidade/Campeonato';
 
 export default function PageCampeonato() {
   return <TabelaCampeonato />;
