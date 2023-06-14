@@ -1,8 +1,9 @@
 import { Switch } from 'antd';
-import ContainerFormulario from '../../Container/Formulario/style';
-import Titulo from '../../Container/Titulo/style';
+
 import Formulario from './formulario';
 import { useEffect, useState } from 'react';
+import ContainerFormulario from '@/Components/Container/Formulario/style';
+import Titulo from '@/Components/Container/Titulo/style';
 
 const logar = 'Faça Login:';
 const cadastro = 'Realize seu cadastro:';

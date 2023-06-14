@@ -41,7 +41,7 @@ export interface ITabelaCampeonato {
   notifications: any[];
   isValid: boolean;
 }
-import servico from '../../../Func/servicos/index';
+import servico from '@/src/Func/servicos/tabelaServico';
 import { useEffect, useState } from 'react';
 import { Space } from 'antd';
 function TabelaCampeonato() {
