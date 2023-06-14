@@ -46,12 +46,13 @@ import { useEffect, useState } from 'react';
 import { Space } from 'antd';
 function TabelaCampeonato() {
   const {
-    data: data,
+    data: dados,
     error,
     isLoading,
   } = useSWR('Tabela', async () => await servico.getDadosTabela());
+
   const [dadosTabela, setDadosTabela] = useState<ITabelaCampeonato[]>(
-    data?.data.tabela
+    dados?.data?.tabela
   );
 
   return (
