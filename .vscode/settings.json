@@ -6,7 +6,8 @@
     "Gols",
     "Parens",
     "posicao",
-    "ultimos"
+    "ultimos",
+    "variacao"
   ],
   "dotenv.enableAutocloaking": false
 }
