@@ -6,7 +6,7 @@ import {
   MinusCircleOutlined,
 } from '@ant-design/icons';
 
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
 interface Time {
   time_id: number;
   nome_popular: string;
@@ -49,10 +49,13 @@ function TabelaCampeonato() {
     data: dados,
     error,
     isLoading,
+    mutate,
   } = useSWR('Tabela', async () => await servico.getDadosTabela());
-  console.log(dados);
-  const [dadosTabela, setDadosTabela] = useState<ITabelaCampeonato[]>(dados);
 
+  const [dadosTabela, setDadosTabela] = useState<ITabelaCampeonato[]>(dados);
+  useEffect(() => {
+    setDadosTabela(dados);
+  }, [dados]);
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>
