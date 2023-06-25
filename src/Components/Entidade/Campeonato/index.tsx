@@ -8,19 +8,19 @@ import {
 
 import useSWR from 'swr';
 interface Time {
-  timeId: number;
-  nomePopular: string;
+  time_id: number;
+  nome_popular: string;
   sigla: string;
   escudo: string;
 }
 
-interface Id {
-  timestamp: number;
-  machine: number;
-  pid: number;
-  increment: number;
-  creationTime: string;
-}
+// interface Id {
+//   timestamp: number;
+//   machine: number;
+//   pid: number;
+//   increment: number;
+//   creationTime: string;
+// }
 
 export interface ITabelaCampeonato {
   posicao: number;
@@ -30,13 +30,13 @@ export interface ITabelaCampeonato {
   vitorias: number;
   empates: number;
   derrotas: number;
-  golsPro: number;
-  golsContra: number;
-  saldoGols: number;
+  gols_pro: number;
+  gols_contra: number;
+  saldo_gols: number;
   aproveitamento: number;
-  variacaoPosicao: number;
-  ultimosJogos: string[];
-  _Id: Id;
+  variacao_posicao: number;
+  ultimos_jogos: string[];
+  _Id: string;
   dataDeCriacao: string;
   notifications: any[];
   isValid: boolean;
@@ -50,10 +50,8 @@ function TabelaCampeonato() {
     error,
     isLoading,
   } = useSWR('Tabela', async () => await servico.getDadosTabela());
-
-  const [dadosTabela, setDadosTabela] = useState<ITabelaCampeonato[]>(
-    dados?.data?.tabela
-  );
+  console.log(dados);
+  const [dadosTabela, setDadosTabela] = useState<ITabelaCampeonato[]>(dados);
 
   return (
     <ContainerTabela>
@@ -75,23 +73,23 @@ function TabelaCampeonato() {
         <tbody>
           {dadosTabela &&
             dadosTabela.map((time) => (
-              <tr key={time._Id.pid}>
+              <tr key={time._Id}>
                 <Td>
                   <Space direction="horizontal" style={{ display: 'flex' }}>
                     {time.posicao}
-                    <img src={time.time.escudo} alt="Botafogo" width={20} />
-                    {time.time.nomePopular}
+                    <img src={time?.time?.escudo} alt="Botafogo" width={20} />
+                    {time?.time?.nome_popular}
                   </Space>
                 </Td>
                 <Td>{time.pontos}</Td>
                 <Td>{time.vitorias}</Td>
                 <Td>{time.empates}</Td>
                 <Td>{time.derrotas}</Td>
-                <Td>{time.golsPro}</Td>
+                <Td>{time.gols_pro}</Td>
                 <Td></Td>
-                <Td>{time.saldoGols}</Td>
+                <Td>{time.saldo_gols}</Td>
                 <Td>
-                  {time.ultimosJogos.map((item) => {
+                  {time.ultimos_jogos.map((item) => {
                     return (
                       <>
                         {item === 'd' && (

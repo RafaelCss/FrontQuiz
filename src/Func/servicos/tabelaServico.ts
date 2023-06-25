@@ -13,7 +13,7 @@ interface ApiResponse<T> {
 
 const getDadosTabela = async () => {
   return await api
-    .get<ApiResponse<ITabelaCampeonato[]>>('Tabela')
+    .get<ApiResponse<ITabelaCampeonato[]>>('tabela')
     .then((res) => res.data)
     .catch((err) => err);
 };
