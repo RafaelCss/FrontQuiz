@@ -1,10 +1,13 @@
 import { InputMod } from '@/Components/Input/style';
-import { Button, Checkbox, Form, Input, Space } from 'antd';
+import { Button, Checkbox, Form, Input, Space, message } from 'antd';
 import { RequiredMark } from 'antd/es/form/Form';
 import { Dispatch, SetStateAction, useState } from 'react';
 import MainFormulario from './style';
-
+import servico from '@/Func/servicos/usuarioServico';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
+import { Usuario } from '../Model';
+import { Rule } from 'antd/es/form';
+import Erros from '@/Func/Model';
 //import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 interface IFormulario {
@@ -15,20 +18,16 @@ interface IFormulario {
 const placeHolder = (item: string) => `Digite ${item}`;
 
 function Formulario({ setChecked, checked }: IFormulario) {
-  const [form] = Form.useForm<IFormulario>();
-  const [requiredMark, setRequiredMarkType] =
-    useState<RequiredMark>('optional');
-
-  const onRequiredTypeChange = ({
-    requiredMarkValue,
-  }: {
-    requiredMarkValue: RequiredMark;
-  }) => {
-    setRequiredMarkType(requiredMarkValue);
-  };
+  const [form] = Form.useForm<Usuario>();
+  const [erros, setErros] = useState<Erros[]>();
   function validarForm() {
-    form.validateFields().then((dados) => {
-      console.log(dados);
+    form.validateFields().then(async (dados) => {
+      const resposta = await servico.postCadastroUsuario(dados);
+      if (resposta.sucesso) {
+        message.success('Usuario cadastrado');
+      }
+      message.error(resposta.message);
+      setErros(resposta.erros);
     });
   }
 
@@ -44,19 +43,28 @@ function Formulario({ setChecked, checked }: IFormulario) {
     setChecked(e.target.checked);
   };
 
+  function ValidatorErrosFormulario(listaErros: any): Rule {
+    return {
+      message: 'teste',
+      warningOnly: true,
+    };
+  }
+
   return (
     <MainFormulario>
       <Form
         id="form"
         form={form}
         layout="vertical"
-        requiredMark={requiredMark}
-        onValuesChange={onRequiredTypeChange}>
+        // requiredMark={requiredMark}
+        // onValuesChange={onRequiredTypeChange}
+      >
         {checked && (
           <Form.Item
             name={['nome']}
             label="Nome"
-            rules={[{ required: true, message: 'Nome é obrigatório' }]}>
+            rules={[{ required: true, message: 'Nome é obrigatório' }]}
+            required>
             <InputMod
               name="nome"
               id="input-nome"
@@ -68,7 +76,10 @@ function Formulario({ setChecked, checked }: IFormulario) {
         <Form.Item
           name={['email']}
           label={'Email'}
-          rules={[{ required: true, message: 'Email é obrigatório' }]}>
+          rules={[
+            ValidatorErrosFormulario('teste'),
+            { required: true, message: 'Email é obrigatório' },
+          ]}>
           <InputMod
             id="input-email"
             name="email"
@@ -85,7 +96,7 @@ function Formulario({ setChecked, checked }: IFormulario) {
             name="senha"
             placeholder={placeHolder('sua senha')}
             autoComplete="off"
-            style={{ height: '4rem', border: 'none' }}
+            style={{ height: '4rem' }}
           />
         </Form.Item>
         <div

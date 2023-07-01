@@ -5,7 +5,6 @@ export const InputMod = styled(Input)`
   display: flex;
   height: 4rem;
   width: 300px;
-  border: none;
 `;
 
 export const InputPasswordMod = styled(Input.Password)`
