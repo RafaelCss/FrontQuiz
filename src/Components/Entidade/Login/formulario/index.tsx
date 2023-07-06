@@ -1,54 +1,98 @@
 import { InputMod } from '@/Components/Input/style';
 import { Button, Checkbox, Form, Input, Space, message } from 'antd';
-import { RequiredMark } from 'antd/es/form/Form';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, Validator, useState } from 'react';
 import MainFormulario from './style';
 import servico from '@/Func/servicos/usuarioServico';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { Usuario } from '../Model';
-import { Rule } from 'antd/es/form';
-import Erros from '@/Func/Model';
+import type { ValidatorRule } from 'rc-field-form/lib/interface';
+import Erros, { Dictionary } from '@/Func/Model';
+import { RuleObject } from 'antd/es/form';
 //import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
 interface IFormulario {
   setChecked: Dispatch<SetStateAction<boolean>>;
   checked: boolean;
 }
-
+interface Erro {
+  [key: string]: string;
+}
 const placeHolder = (item: string) => `Digite ${item}`;
 
 function Formulario({ setChecked, checked }: IFormulario) {
   const [form] = Form.useForm<Usuario>();
-  const [erros, setErros] = useState<Erros[]>();
+  const [erros, setErros] = useState<Erro[]>();
+
   function validarForm() {
-    form.validateFields().then(async (dados) => {
-      const resposta = await servico.postCadastroUsuario(dados);
-      if (resposta.sucesso) {
-        message.success('Usuario cadastrado');
-      }
-      message.error(resposta.message);
-      setErros(resposta.erros);
-    });
+    form
+      .validateFields()
+      .then(async (dados) => {
+        //   if(checked){
+        //   const resposta = await servico.postLoginUsuario(dados);
+        //    if (resposta.sucesso) {
+        //       message.success('Usuario cadastrado');
+        //     }
+        //   message.error(resposta.message);
+        //   setErros(resposta.erros);
+        //   return
+        // }
+        const resposta = await servico.postCadastroUsuario(dados);
+        if (resposta.sucesso) {
+          message.success('Usuario cadastrado');
+          setErros([]);
+          return;
+        }
+        message.error(resposta.message);
+        setErros(resposta.erros as any);
+        console.log(resposta);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+  //   console.log(erros)
+  //  const formRuleErrorsServidor = (errors: Erros[]): ValidatorRule => ({
+  //    validator: async rule => {'
+  //     console.log(rule)
+  //      if (!errors) return;
+  //     const {field} = rule as {field : string}
+  //  if (errors.field[0]) {
+  //       throw new Error(errors.field);
+  //     }
+
+  //     if (errors[field]) {
+  //       throw new Error(errors[field][0]);
+  //     }
+  //   }
+  // });
+
+  const validateCustom = (erros: Erro[]): RuleObject => ({
+    validator(rule, value) {
+      try {
+        const { field } = rule as { field: string };
+        const err = erros?.filter((item) => item[field]);
+        console.log(Object.keys(erros).toString());
+        if (field) {
+          return Promise.reject(
+            err.map((item) => new Error(`Erro no campo ${item[0]}`))
+          ); // Reject the promise with an array of Error objects
+        }
+
+        return Promise.resolve(); // Resolve the promise if validation is successful
+      } catch (err) {
+        console.error(err);
+        return Promise.reject(new Error('Ocorreu um erro')); // Reject the promise with a generic Error object
+      }
+    },
+  });
 
   function cancelarEnvio() {
     form.resetFields();
   }
 
-  const errosCampos = {
-    message: 'este campo é invalido',
-  };
-
   const onChange = (e: CheckboxChangeEvent) => {
     setChecked(e.target.checked);
   };
-
-  function ValidatorErrosFormulario(listaErros: any): Rule {
-    return {
-      message: 'teste',
-      warningOnly: true,
-    };
-  }
 
   return (
     <MainFormulario>
@@ -57,13 +101,16 @@ function Formulario({ setChecked, checked }: IFormulario) {
         form={form}
         layout="vertical"
         // requiredMark={requiredMark}
-        // onValuesChange={onRequiredTypeChange}
-      >
+        onValuesChange={(e) => console.log(e)}
+        scrollToFirstError>
         {checked && (
           <Form.Item
             name={['nome']}
             label="Nome"
-            rules={[{ required: true, message: 'Nome é obrigatório' }]}
+            rules={[
+              validateCustom(erros as any),
+              { required: true, message: 'Nome é obrigatório' },
+            ]}
             required>
             <InputMod
               name="nome"
@@ -77,7 +124,7 @@ function Formulario({ setChecked, checked }: IFormulario) {
           name={['email']}
           label={'Email'}
           rules={[
-            ValidatorErrosFormulario('teste'),
+            validateCustom(erros as any),
             { required: true, message: 'Email é obrigatório' },
           ]}>
           <InputMod
@@ -90,7 +137,10 @@ function Formulario({ setChecked, checked }: IFormulario) {
         <Form.Item
           name={['senha']}
           label={'Senha'}
-          rules={[{ required: true, message: 'Senha é obrigatória' }]}>
+          rules={[
+            validateCustom(erros as any),
+            { required: true, message: 'Senha é obrigatória' },
+          ]}>
           <Input.Password
             id="input-senha"
             name="senha"
