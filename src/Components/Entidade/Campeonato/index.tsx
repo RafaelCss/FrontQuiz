@@ -52,10 +52,11 @@ function TabelaCampeonato() {
     mutate,
   } = useSWR('Tabela', async () => await servico.getDadosTabela());
 
-  const [dadosTabela, setDadosTabela] = useState<ITabelaCampeonato[]>(dados);
+  const [dadosTabela, setDadosTabela] = useState<ITabelaCampeonato[]>([]);
   useEffect(() => {
     setDadosTabela(dados);
   }, [dados]);
+
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>
