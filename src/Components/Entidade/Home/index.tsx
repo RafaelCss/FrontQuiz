@@ -1,6 +1,6 @@
 import React from 'react';
 import { Carousel } from 'antd';
-
+import Image from 'next/image';
 const contentStyle: React.CSSProperties = {
   margin: 0,
   height: '400px',
@@ -34,7 +34,11 @@ const Home: React.FC = () => {
       <Carousel afterChange={onChange} autoplay>
         {imagePaths.map((imagem) => (
           <div key={imagem}>
-            <img src={imagem} alt="contentStyle" style={contentStyle} />
+            <Image
+              src={imagem.toString()}
+              alt="contentStyle"
+              style={contentStyle}
+            />
           </div>
         ))}
       </Carousel>
