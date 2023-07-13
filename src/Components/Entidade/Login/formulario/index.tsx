@@ -1,27 +1,43 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { InputMod } from '@/Components/Input/style';
 import { Button, Checkbox, Form, Input, Space, message } from 'antd';
-import { Dispatch, SetStateAction, Validator, useState } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  Validator,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import MainFormulario from './style';
 import servico from '@/Func/servicos/usuarioServico';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { Usuario } from '../Model';
-import type { ValidatorRule } from 'rc-field-form/lib/interface';
 import Erros, { Dictionary } from '@/Func/Model';
-import { RuleObject } from 'antd/es/form';
+import _, {
+  isArray,
+  isBoolean,
+  isDate,
+  isEmpty,
+  isEqual,
+  isFunction,
+  isNil,
+  isObject,
+  isString,
+  parseInt,
+} from 'lodash';
 //import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-
+import type { ValidatorRule, Callbacks } from 'rc-field-form/lib/interface';
 interface IFormulario {
   setChecked: Dispatch<SetStateAction<boolean>>;
   checked: boolean;
 }
-interface Erro {
-  [key: string]: string;
-}
+
 const placeHolder = (item: string) => `Digite ${item}`;
 
 function Formulario({ setChecked, checked }: IFormulario) {
   const [form] = Form.useForm<Usuario>();
-  const [erros, setErros] = useState<Erro[]>();
+  const [erros, setErros] = useState<Dictionary<string[]>>({});
 
   function validarForm() {
     form
@@ -39,52 +55,57 @@ function Formulario({ setChecked, checked }: IFormulario) {
         const resposta = await servico.postCadastroUsuario(dados);
         if (resposta.sucesso) {
           message.success('Usuario cadastrado');
-          setErros([]);
+          setErros({});
           return;
         }
         message.error(resposta.message);
-        setErros(resposta.erros as any);
-        console.log(resposta);
+        console.log(resposta.erros);
+        setErros(transformErrorMessage(resposta.erros as any));
       })
       .catch((err) => {
         console.log(err);
       });
   }
-  //   console.log(erros)
-  //  const formRuleErrorsServidor = (errors: Erros[]): ValidatorRule => ({
-  //    validator: async rule => {'
-  //     console.log(rule)
-  //      if (!errors) return;
-  //     const {field} = rule as {field : string}
-  //  if (errors.field[0]) {
-  //       throw new Error(errors.field);
-  //     }
+  const primeiraLetraMaiuscula = (texto: string): string =>
+    texto ? texto[0].toUpperCase() + texto.slice(1) : texto;
 
-  //     if (errors[field]) {
-  //       throw new Error(errors[field][0]);
-  //     }
-  //   }
-  // });
+  const primeiraLetraMinuscula = (texto: string): string =>
+    texto ? texto[0].toLowerCase() + texto.slice(1) : texto;
 
-  const validateCustom = (erros: Erro[]): RuleObject => ({
-    validator(rule, value) {
-      try {
-        const { field } = rule as { field: string };
-        const err = erros?.filter((item) => item[field]);
-        console.log(Object.keys(erros).toString());
-        if (field) {
-          return Promise.reject(
-            err.map((item) => new Error(`Erro no campo ${item[0]}`))
-          ); // Reject the promise with an array of Error objects
-        }
+  const formRuleErrorsServidor = (
+    errors: Dictionary<string[]>
+  ): ValidatorRule => ({
+    validator: async (rule) => {
+      if (!errors) return;
+      const { field } = rule as { field: string };
+      if (errors[primeiraLetraMinuscula(field)]) {
+        throw new Error(errors[primeiraLetraMinuscula(field)][0]);
+      }
 
-        return Promise.resolve(); // Resolve the promise if validation is successful
-      } catch (err) {
-        console.error(err);
-        return Promise.reject(new Error('Ocorreu um erro')); // Reject the promise with a generic Error object
+      if (errors[primeiraLetraMaiuscula(field)]) {
+        throw new Error(errors[primeiraLetraMaiuscula(field)][0]);
       }
     },
   });
+  interface ErrorMessage {
+    property: string;
+    message: string;
+  }
+  function transformErrorMessage(errors: ErrorMessage[]): {
+    [key: string]: string[];
+  } {
+    const transformedErrors: { [key: string]: string[] } = {};
+
+    for (const error of errors) {
+      if (transformedErrors.hasOwnProperty(error.property)) {
+        transformedErrors[error.property].push(error.message);
+      } else {
+        transformedErrors[error.property] = [error.message];
+      }
+    }
+
+    return transformedErrors;
+  }
 
   function cancelarEnvio() {
     form.resetFields();
@@ -94,6 +115,56 @@ function Formulario({ setChecked, checked }: IFormulario) {
     setChecked(e.target.checked);
   };
 
+  const renderErrors = useCallback(() => {
+    const newlistaErrors = erros || {};
+    const fieldsErrors = Object.keys(form.getFieldsValue()).map((key) => ({
+      name: key,
+      errors: formFiltroErrors(key, newlistaErrors),
+    }));
+    if (form) form.setFields(fieldsErrors);
+  }, [erros]);
+  useEffect(renderErrors, [renderErrors]);
+
+  const formFiltroErrors = (
+    chave: string,
+    errors: Dictionary<string[]>
+  ): string[] => {
+    const errosChave: string[] = [];
+
+    if (!errors) {
+      return errosChave;
+    }
+
+    if (errors[primeiraLetraMaiuscula(chave)]) {
+      errosChave.push(...errors[primeiraLetraMaiuscula(chave)]);
+    }
+
+    if (errors[primeiraLetraMinuscula(chave)]) {
+      errosChave.push(...errors[primeiraLetraMinuscula(chave)]);
+    }
+
+    return errosChave.filter((erro) => erro !== null && erro !== undefined);
+  };
+
+  const formHandleErrors =
+    (
+      errors: Dictionary<string[]>,
+      setErrors: Dispatch<SetStateAction<Dictionary<string[]>>>
+    ): Callbacks<unknown>['onValuesChange'] =>
+    (changedValues, values) => {
+      if (isEmpty(errors)) {
+        return;
+      }
+
+      const novoErrors = { ...errors };
+      Object.keys(changedValues).forEach((nomeCampo) => {
+        if (nomeCampo) {
+          delete novoErrors[primeiraLetraMaiuscula(nomeCampo)];
+          delete novoErrors[primeiraLetraMinuscula(nomeCampo)];
+        }
+      });
+      setErrors(novoErrors);
+    };
   return (
     <MainFormulario>
       <Form
@@ -101,14 +172,14 @@ function Formulario({ setChecked, checked }: IFormulario) {
         form={form}
         layout="vertical"
         // requiredMark={requiredMark}
-        onValuesChange={(e) => console.log(e)}
+        onValuesChange={formHandleErrors(erros, setErros)}
         scrollToFirstError>
         {checked && (
           <Form.Item
             name={['nome']}
             label="Nome"
             rules={[
-              validateCustom(erros as any),
+              formRuleErrorsServidor(erros as any),
               { required: true, message: 'Nome é obrigatório' },
             ]}
             required>
@@ -124,7 +195,7 @@ function Formulario({ setChecked, checked }: IFormulario) {
           name={['email']}
           label={'Email'}
           rules={[
-            validateCustom(erros as any),
+            formRuleErrorsServidor(erros as any),
             { required: true, message: 'Email é obrigatório' },
           ]}>
           <InputMod
@@ -138,7 +209,7 @@ function Formulario({ setChecked, checked }: IFormulario) {
           name={['senha']}
           label={'Senha'}
           rules={[
-            validateCustom(erros as any),
+            formRuleErrorsServidor(erros as any),
             { required: true, message: 'Senha é obrigatória' },
           ]}>
           <Input.Password
