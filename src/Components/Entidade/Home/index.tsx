@@ -15,11 +15,11 @@ const Home: React.FC = () => {
     console.log(currentSlide);
   };
 
-  // const imagePaths = [
-  //   '../../../../public/image1.jpg',
-  //   '../../../../public/image2.jpg',
-  //   // Adicione mais caminhos de imagem conforme necessário
-  // ];
+  const imagePaths = [
+    '/public/imagem1.jpg',
+    '/public/imagem.jpeg',
+    // Adicione mais caminhos de imagem conforme necessário
+  ];
 
   return (
     <main
@@ -32,15 +32,17 @@ const Home: React.FC = () => {
         position: 'relative',
       }}>
       <Carousel afterChange={onChange} autoplay>
-        {/* {imagePaths.map((imagem) => (
+        {imagePaths.map((imagem) => (
           <div key={imagem}>
             <Image
               src={imagem.toString()}
               alt="contentStyle"
               style={contentStyle}
+              width={860}
+              height={860}
             />
           </div>
-        ))} */}
+        ))}
       </Carousel>
     </main>
   );
