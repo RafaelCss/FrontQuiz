@@ -1,5 +1,3 @@
-import { Switch } from 'antd';
-
 import Formulario from './formulario';
 import { useEffect, useState } from 'react';
 import ContainerFormulario from '@/Components/Container/Formulario/style';
