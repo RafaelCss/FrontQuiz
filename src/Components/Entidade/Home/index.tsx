@@ -16,9 +16,10 @@ const Home: React.FC = () => {
   };
 
   const imagePaths = [
-    '/public/imagem1.jpg',
-    '/public/imagem.jpeg',
-    // Adicione mais caminhos de imagem conforme necessário
+    '/imagem1.jpg',
+    '/imagem4.jpeg',
+    '/imagem2.jpg',
+    // Adicione mais caminhos de imagem conforme necessário, por padrão já busca arquivos estáticos da pasta public.
   ];
 
   return (
@@ -29,17 +30,16 @@ const Home: React.FC = () => {
         width: '70vw',
         height: '100vh',
         flexDirection: 'column',
-        position: 'relative',
       }}>
       <Carousel afterChange={onChange} autoplay>
         {imagePaths.map((imagem) => (
           <div key={imagem}>
             <Image
-              src={imagem.toString()}
+              src={imagem}
               alt="contentStyle"
               style={contentStyle}
-              width={860}
-              height={860}
+              width={800}
+              height={800}
             />
           </div>
         ))}
