@@ -3,6 +3,7 @@
     "Botafogo",
     "caminhos",
     "Celula",
+    "Entidade",
     "Formulario",
     "Gols",
     "imagen",
@@ -12,8 +13,10 @@
     "Minuscula",
     "Parens",
     "posicao",
+    "Servico",
     "ultimos",
     "variacao"
   ],
-  "dotenv.enableAutocloaking": false
+  "dotenv.enableAutocloaking": false,
+  "cSpell.language": "en,pt"
 }

@@ -1,4 +1,5 @@
-import Pagina from '../../Components/Entidade/Login/index';
+'use client';
+import Pagina from '@/Components/Entidade/Login/index';
 
 function Logar() {
   return <Pagina />;

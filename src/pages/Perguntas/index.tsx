@@ -1,3 +1,4 @@
+'use client';
 import ListaPerguntas from '@/Components/Entidade/Perguntas';
 
 function Perguntas() {
