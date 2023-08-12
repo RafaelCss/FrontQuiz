@@ -45,18 +45,12 @@ import servico from '@/Func/servicos/tabelaServico';
 import { useEffect, useState } from 'react';
 import { Space } from 'antd';
 function TabelaCampeonato() {
-  const {
-    data: dados,
-    error,
-    isLoading,
-    mutate,
-  } = useSWR('Tabela', async () => await servico.getDadosTabela());
+  const { data, error, isLoading, mutate } = useSWR(
+    'Tabela',
+    async () => await servico.getDadosTabela()
+  );
 
-  const [dadosTabela, setDadosTabela] = useState<ITabelaCampeonato[]>([]);
-  useEffect(() => {
-    setDadosTabela(dados);
-  }, [dados]);
-
+  const dadosTabela: ITabelaCampeonato[] = data;
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>
@@ -75,60 +69,59 @@ function TabelaCampeonato() {
           </tr>
         </thead>
         <tbody>
-          {dadosTabela &&
-            dadosTabela.map((time) => (
-              <tr key={time._Id}>
-                <Td>
-                  <Space direction="horizontal" style={{ display: 'flex' }}>
-                    {time.posicao}
-                    <img src={time?.time?.escudo} alt="Botafogo" width={20} />
-                    {time?.time?.nome_popular}
-                  </Space>
-                </Td>
-                <Td>{time.pontos}</Td>
-                <Td>{time.vitorias}</Td>
-                <Td>{time.empates}</Td>
-                <Td>{time.derrotas}</Td>
-                <Td>{time.gols_pro}</Td>
-                <Td></Td>
-                <Td>{time.saldo_gols}</Td>
-                <Td>
-                  {time.ultimos_jogos.map((item) => {
-                    return (
-                      <>
-                        {item === 'd' && (
-                          <CloseOutlined
-                            style={{
-                              color: '#f80808',
-                              fontSize: '13px',
-                              margin: '1px 1px',
-                            }}
-                          />
-                        )}
-                        {item === 'v' && (
-                          <CheckOutlined
-                            style={{
-                              color: '#52c41a',
-                              fontSize: '12px',
-                              margin: '1px 1px',
-                            }}
-                          />
-                        )}
-                        {item === 'e' && (
-                          <MinusCircleOutlined
-                            style={{
-                              color: '#afb1aedb',
-                              fontSize: '12px',
-                              margin: '1px 1px',
-                            }}
-                          />
-                        )}
-                      </>
-                    );
-                  })}
-                </Td>
-              </tr>
-            ))}
+          {dadosTabela.map((time) => (
+            <tr key={time._Id}>
+              <Td>
+                <Space direction="horizontal" style={{ display: 'flex' }}>
+                  {time.posicao}
+                  <img src={time?.time?.escudo} alt="Botafogo" width={20} />
+                  {time?.time?.nome_popular}
+                </Space>
+              </Td>
+              <Td>{time.pontos}</Td>
+              <Td>{time.vitorias}</Td>
+              <Td>{time.empates}</Td>
+              <Td>{time.derrotas}</Td>
+              <Td>{time.gols_pro}</Td>
+              <Td></Td>
+              <Td>{time.saldo_gols}</Td>
+              <Td>
+                {time.ultimos_jogos.map((item) => {
+                  return (
+                    <>
+                      {item === 'd' && (
+                        <CloseOutlined
+                          style={{
+                            color: '#f80808',
+                            fontSize: '13px',
+                            margin: '1px 1px',
+                          }}
+                        />
+                      )}
+                      {item === 'v' && (
+                        <CheckOutlined
+                          style={{
+                            color: '#52c41a',
+                            fontSize: '12px',
+                            margin: '1px 1px',
+                          }}
+                        />
+                      )}
+                      {item === 'e' && (
+                        <MinusCircleOutlined
+                          style={{
+                            color: '#afb1aedb',
+                            fontSize: '12px',
+                            margin: '1px 1px',
+                          }}
+                        />
+                      )}
+                    </>
+                  );
+                })}
+              </Td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </ContainerTabela>
