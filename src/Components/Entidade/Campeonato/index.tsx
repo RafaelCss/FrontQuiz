@@ -7,49 +7,21 @@ import {
 } from '@ant-design/icons';
 
 import useSWR, { mutate } from 'swr';
-interface Time {
-  time_id: number;
-  nome_popular: string;
-  sigla: string;
-  escudo: string;
-}
 
-// interface Id {
-//   timestamp: number;
-//   machine: number;
-//   pid: number;
-//   increment: number;
-//   creationTime: string;
-// }
-
-export interface ITabelaCampeonato {
-  posicao: number;
-  pontos: number;
-  time: Time;
-  jogos: number;
-  vitorias: number;
-  empates: number;
-  derrotas: number;
-  gols_pro: number;
-  gols_contra: number;
-  saldo_gols: number;
-  aproveitamento: number;
-  variacao_posicao: number;
-  ultimos_jogos: string[];
-  _Id: string;
-  dataDeCriacao: string;
-  notifications: any[];
-  isValid: boolean;
-}
 import servico from '@/Func/servicos/tabelaServico';
 import { useEffect, useState } from 'react';
 import { Space } from 'antd';
+import { ITabelaCampeonato } from '@/Components/Models';
 function TabelaCampeonato() {
-  const { data, error, isLoading, mutate } = useSWR('Tabela', async () =>
-    servico.getDadosTabela()
-  );
+  const {
+    data: data,
+    error,
+    isLoading,
+    mutate,
+  } = useSWR('Tabela', async () => servico.getDadosTabela());
 
-  const dadosTabela: ITabelaCampeonato[] = data?.data as ITabelaCampeonato[];
+  const dadosTabela: ITabelaCampeonato[] =
+    data as unknown as ITabelaCampeonato[];
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>
@@ -68,7 +40,7 @@ function TabelaCampeonato() {
           </tr>
         </thead>
         <tbody>
-          {dadosTabela?.map((time) => (
+          {dadosTabela.map((time) => (
             <tr key={time._Id}>
               <Td>
                 <Space direction="horizontal" style={{ display: 'flex' }}>
@@ -90,6 +62,7 @@ function TabelaCampeonato() {
                     <>
                       {item === 'd' && (
                         <CloseOutlined
+                          rev={{}}
                           style={{
                             color: '#f80808',
                             fontSize: '13px',
@@ -99,6 +72,7 @@ function TabelaCampeonato() {
                       )}
                       {item === 'v' && (
                         <CheckOutlined
+                          rev={{}}
                           style={{
                             color: '#52c41a',
                             fontSize: '12px',
@@ -108,6 +82,7 @@ function TabelaCampeonato() {
                       )}
                       {item === 'e' && (
                         <MinusCircleOutlined
+                          rev={{}}
                           style={{
                             color: '#afb1aedb',
                             fontSize: '12px',
