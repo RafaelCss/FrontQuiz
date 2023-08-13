@@ -49,7 +49,7 @@ function TabelaCampeonato() {
     servico.getDadosTabela()
   );
 
-  const dadosTabela: ITabelaCampeonato[] = data?.data || [];
+  const dadosTabela: ITabelaCampeonato[] = data?.data as ITabelaCampeonato[];
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>
