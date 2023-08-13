@@ -68,7 +68,7 @@ function TabelaCampeonato() {
           </tr>
         </thead>
         <tbody>
-          {dadosTabela.map((time) => (
+          {dadosTabela?.map((time) => (
             <tr key={time._Id}>
               <Td>
                 <Space direction="horizontal" style={{ display: 'flex' }}>
