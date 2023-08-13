@@ -11,7 +11,7 @@ interface ApiResponse<T> {
   pageIndex: number;
 }
 
-const getDadosTabela = async () => {
+const getDadosTabela = async (): Promise<ApiResponse<ITabelaCampeonato[]>> => {
   return await api
     .get<ApiResponse<ITabelaCampeonato[]>>('tabela')
     .then((res) => res.data)

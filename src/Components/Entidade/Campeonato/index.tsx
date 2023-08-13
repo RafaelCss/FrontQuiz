@@ -45,12 +45,11 @@ import servico from '@/Func/servicos/tabelaServico';
 import { useEffect, useState } from 'react';
 import { Space } from 'antd';
 function TabelaCampeonato() {
-  const { data, error, isLoading, mutate } = useSWR(
-    'Tabela',
-    async () => await servico.getDadosTabela()
+  const { data, error, isLoading, mutate } = useSWR('Tabela', async () =>
+    servico.getDadosTabela()
   );
 
-  const dadosTabela: ITabelaCampeonato[] = data;
+  const dadosTabela: ITabelaCampeonato[] = data?.data || [];
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>
@@ -86,7 +85,7 @@ function TabelaCampeonato() {
               <Td></Td>
               <Td>{time.saldo_gols}</Td>
               <Td>
-                {time.ultimos_jogos.map((item) => {
+                {time.ultimos_jogos?.map((item) => {
                   return (
                     <>
                       {item === 'd' && (
