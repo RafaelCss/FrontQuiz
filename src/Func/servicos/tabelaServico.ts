@@ -1,6 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-
-import { ITabelaCampeonato } from '@/Components/Entidade/Campeonato';
+import { ITabelaCampeonato } from '@/Components/Models';
 import api from '../configAxios';
 interface ApiResponse<T> {
   success: boolean;
@@ -11,8 +10,10 @@ interface ApiResponse<T> {
   pageIndex: number;
 }
 
-const getDadosTabela = async (): Promise<ApiResponse<ITabelaCampeonato[]>> => {
-  return await api
+type RespostaTabela = () => Promise<ApiResponse<ITabelaCampeonato[]>>;
+
+const getDadosTabela: RespostaTabela = () => {
+  return api
     .get<ApiResponse<ITabelaCampeonato[]>>('tabela')
     .then((res) => res.data)
     .catch((err) => err);

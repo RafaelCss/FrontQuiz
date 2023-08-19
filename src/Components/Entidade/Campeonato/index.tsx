@@ -20,8 +20,7 @@ function TabelaCampeonato() {
     mutate,
   } = useSWR('Tabela', async () => servico.getDadosTabela());
 
-  const dadosTabela: ITabelaCampeonato[] =
-    data as unknown as ITabelaCampeonato[];
+  const dadosTabela: ITabelaCampeonato[] = data?.data || [];
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>
