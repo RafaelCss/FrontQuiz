@@ -16,7 +16,7 @@
     "*.{js,css,md}": "prettier --write"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.0.1",
+    "@ant-design/icons": "5.0.1",
     "@types/lodash": "^4.14.195",
     "@types/node": "18.15.11",
     "@types/react": "18.0.31",
