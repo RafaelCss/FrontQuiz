@@ -9,11 +9,9 @@ interface IFooter {
 function Footer({ children }: IFooter) {
   return (
     <FooterMod>
-      <>
-        <InstagramOutlined title="Instagram" />
-        <TwitterOutlined title="Twitter" />
-        {children}
-      </>
+      <InstagramOutlined rev={{}} title="Instagram" />
+      <TwitterOutlined rev={{}} title="Twitter" />
+      {children}
     </FooterMod>
   );
 }
