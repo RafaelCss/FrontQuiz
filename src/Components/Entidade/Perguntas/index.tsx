@@ -21,57 +21,7 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
 );
 
 function ListaPerguntas() {
-  return (
-    <>
-      <ContainerLista>
-        <List
-          itemLayout="vertical"
-          size="small"
-          pagination={{
-            onChange: (page) => {
-              console.log(page);
-            },
-            pageSize: 3,
-          }}
-          dataSource={data}
-          renderItem={(item) => (
-            <List.Item
-              key={item.title}
-              actions={[
-                <IconText
-                  icon={StarOutlined}
-                  text="156"
-                  key="list-vertical-star-o"
-                />,
-                <IconText
-                  icon={LikeOutlined}
-                  text="156"
-                  key="list-vertical-like-o"
-                />,
-                <IconText
-                  icon={MessageOutlined}
-                  text="2"
-                  key="list-vertical-message"
-                />,
-              ]}>
-              <List.Item.Meta
-                avatar={<Avatar src={item.avatar} />}
-                title={
-                  <a style={{ color: 'white' }} href={item.href}>
-                    {item.title}
-                  </a>
-                }
-                description={
-                  <p style={{ color: 'white' }}>{item.description}</p>
-                }
-              />
-              <p style={{ color: 'white' }}>{item.content}</p>
-            </List.Item>
-          )}
-        />
-      </ContainerLista>
-    </>
-  );
+  return <ContainerLista></ContainerLista>;
 }
 
 export default ListaPerguntas;
