@@ -19,8 +19,10 @@ function TabelaCampeonato() {
     isLoading,
     mutate,
   } = useSWR('Tabela', async () => servico.getDadosTabela());
-
+  console.log('data', data);
   const dadosTabela: ITabelaCampeonato[] = data?.data || [];
+  console.log('data2', data?.data);
+  console.log('dadosTabela', dadosTabela);
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>
