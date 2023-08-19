@@ -13,16 +13,12 @@ import { useEffect, useState } from 'react';
 import { Space } from 'antd';
 import { ITabelaCampeonato } from '@/Components/Models';
 function TabelaCampeonato() {
-  const {
-    data: data,
-    error,
-    isLoading,
-    mutate,
-  } = useSWR('Tabela', async () => servico.getDadosTabela());
-  console.log('data', data);
+  const { data, error, isLoading, mutate } = useSWR('Tabela', async () =>
+    servico.getDadosTabela()
+  );
+
   const dadosTabela: ITabelaCampeonato[] = data?.data || [];
-  console.log('data2', data?.data);
-  console.log('dadosTabela', dadosTabela);
+
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>
