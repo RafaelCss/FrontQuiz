@@ -19,3 +19,8 @@ export interface IPaginacao {
 export interface Dictionary<T> {
   [Key: string]: T;
 }
+
+export interface ErrorMessage {
+  property: string;
+  message: string;
+}

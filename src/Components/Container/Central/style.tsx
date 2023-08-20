@@ -7,7 +7,8 @@ const ContentMod = styled(Content)`
   display: flex;
   color: #fff5f5;
   justify-content: center;
-  height: 100%;
+  align-items: center;
+  height: 100vh;
   background-size: cover;
   background-position: center;
   // background-attachment: fixed;

@@ -14,20 +14,15 @@ import servico from '@/Func/servicos/usuarioServico';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { Usuario } from '../Model';
 import Erros, { Dictionary } from '@/Func/Model';
-import _, {
-  isArray,
-  isBoolean,
-  isDate,
-  isEmpty,
-  isEqual,
-  isFunction,
-  isNil,
-  isObject,
-  isString,
-  parseInt,
-} from 'lodash';
+
 //import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import type { ValidatorRule, Callbacks } from 'rc-field-form/lib/interface';
+import {
+  formFiltroErrors,
+  formHandleErrors,
+  formRuleErrorsServidor,
+  transformErrorMessage,
+} from '@/Func/lib/utius';
 interface IFormulario {
   setChecked: Dispatch<SetStateAction<boolean>>;
   checked: boolean;
@@ -43,15 +38,6 @@ function Formulario({ setChecked, checked }: IFormulario) {
     form
       .validateFields()
       .then(async (dados) => {
-        //   if(checked){
-        //   const resposta = await servico.postLoginUsuario(dados);
-        //    if (resposta.sucesso) {
-        //       message.success('Usuario cadastrado');
-        //     }
-        //   message.error(resposta.message);
-        //   setErros(resposta.erros);
-        //   return
-        // }
         const resposta = await servico.postCadastroUsuario(dados);
         if (resposta.sucesso) {
           message.success('Usuario cadastrado');
@@ -65,46 +51,6 @@ function Formulario({ setChecked, checked }: IFormulario) {
       .catch((err) => {
         console.log(err);
       });
-  }
-  const primeiraLetraMaiuscula = (texto: string): string =>
-    texto ? texto[0].toUpperCase() + texto.slice(1) : texto;
-
-  const primeiraLetraMinuscula = (texto: string): string =>
-    texto ? texto[0].toLowerCase() + texto.slice(1) : texto;
-
-  const formRuleErrorsServidor = (
-    errors: Dictionary<string[]>
-  ): ValidatorRule => ({
-    validator: async (rule) => {
-      if (!errors) return;
-      const { field } = rule as { field: string };
-      if (errors[primeiraLetraMinuscula(field)]) {
-        throw new Error(errors[primeiraLetraMinuscula(field)][0]);
-      }
-
-      if (errors[primeiraLetraMaiuscula(field)]) {
-        throw new Error(errors[primeiraLetraMaiuscula(field)][0]);
-      }
-    },
-  });
-  interface ErrorMessage {
-    property: string;
-    message: string;
-  }
-  function transformErrorMessage(errors: ErrorMessage[]): {
-    [key: string]: string[];
-  } {
-    const transformedErrors: { [key: string]: string[] } = {};
-
-    for (const error of errors) {
-      if (transformedErrors.hasOwnProperty(error.property)) {
-        transformedErrors[error.property].push(error.message);
-      } else {
-        transformedErrors[error.property] = [error.message];
-      }
-    }
-
-    return transformedErrors;
   }
 
   function cancelarEnvio() {
@@ -125,46 +71,6 @@ function Formulario({ setChecked, checked }: IFormulario) {
   }, [erros]);
   useEffect(renderErrors, [renderErrors]);
 
-  const formFiltroErrors = (
-    chave: string,
-    errors: Dictionary<string[]>
-  ): string[] => {
-    const errosChave: string[] = [];
-
-    if (!errors) {
-      return errosChave;
-    }
-
-    if (errors[primeiraLetraMaiuscula(chave)]) {
-      errosChave.push(...errors[primeiraLetraMaiuscula(chave)]);
-    }
-
-    if (errors[primeiraLetraMinuscula(chave)]) {
-      errosChave.push(...errors[primeiraLetraMinuscula(chave)]);
-    }
-
-    return errosChave.filter((erro) => erro !== null && erro !== undefined);
-  };
-
-  const formHandleErrors =
-    (
-      errors: Dictionary<string[]>,
-      setErrors: Dispatch<SetStateAction<Dictionary<string[]>>>
-    ): Callbacks<unknown>['onValuesChange'] =>
-    (changedValues, values) => {
-      if (isEmpty(errors)) {
-        return;
-      }
-
-      const novoErrors = { ...errors };
-      Object.keys(changedValues).forEach((nomeCampo) => {
-        if (nomeCampo) {
-          delete novoErrors[primeiraLetraMaiuscula(nomeCampo)];
-          delete novoErrors[primeiraLetraMinuscula(nomeCampo)];
-        }
-      });
-      setErrors(novoErrors);
-    };
   return (
     <MainFormulario>
       <Form

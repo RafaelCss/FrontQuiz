@@ -1,3 +1,4 @@
+'use client';
 /* eslint-disable @next/next/no-img-element */
 import { ContainerTabela, Td, Th } from './style';
 import {
@@ -6,18 +7,17 @@ import {
   MinusCircleOutlined,
 } from '@ant-design/icons';
 
-import useSWR, { mutate } from 'swr';
-
+import useSWR from 'swr';
 import servico from '@/Func/servicos/tabelaServico';
-import { useEffect, useState } from 'react';
 import { Space } from 'antd';
 import { ITabelaCampeonato } from '@/Components/Models';
+
 function TabelaCampeonato() {
   const { data, error, isLoading, mutate } = useSWR('Tabela', async () =>
     servico.getDadosTabela()
   );
 
-  const dadosTabela: ITabelaCampeonato[] = data?.data || [];
+  const dadosTabela: ITabelaCampeonato[] = data?.dados || [];
 
   return (
     <ContainerTabela>

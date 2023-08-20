@@ -4,7 +4,7 @@ import api from '../configAxios';
 interface ApiResponse<T> {
   success: boolean;
   message: string;
-  data: T;
+  dados: T;
   totalCount: number;
   pageSize: number;
   pageIndex: number;
