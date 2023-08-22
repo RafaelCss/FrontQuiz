@@ -13,7 +13,7 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown",
-    "*.js": [
+    "*.tsx": [
       "npm run test",
       "git add ."
     ],
