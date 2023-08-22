@@ -12,9 +12,8 @@
     "test": "jest"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown",
-    "*.tsx": [
-      "npm run test",
+    "*.{ts,tsx}": [
+      "npm test",
       "git add"
     ],
     "*.{js,css,md,ts,tsx}": "prettier --write"
