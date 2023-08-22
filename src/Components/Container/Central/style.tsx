@@ -13,9 +13,10 @@ const ContentMod = styled(Content)`
   background-position: center;
   // background-attachment: fixed;
   // object-fit: cover;
-  background-image: url(${CampoDeFutebol.src});
+  // background-image: url(${CampoDeFutebol.src});
   // background-repeat:no-repeat;
   //  background-attachment: scroll;
+  background-color: black;
 `;
 
 export default ContentMod;

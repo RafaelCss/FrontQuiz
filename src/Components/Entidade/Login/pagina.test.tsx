@@ -6,6 +6,7 @@ import {
   getByText,
   queryAllByAltText,
   queryByAttribute,
+  queryByText,
   render,
   screen,
   waitFor,
@@ -16,40 +17,37 @@ import userEvent from '@testing-library/user-event';
 //Arquivo necessita ser invocado para funcionamento das funções do Jest
 import '../../../Testes/matchMedia';
 
-const queryById = queryByAttribute.bind(null, 'id');
-
 describe('Testa se a pagina está renderizada', () => {
-  it('Verifica se o botão em   está sendo renderizado:', async () => {
+  test('Verifica se o botão em   está sendo renderizado:', async () => {
     // arrange
     // act
 
-    act(() => {
-      render(<Pagina />);
-    });
+    const { container } = render(<Pagina />);
+    act(() => {});
 
     // assert
-    await waitFor(() => queryById(document, `btn-confirmar`));
-    const btnConfirmar = queryById(document, `btn-confirmar`);
-    const form = queryById(document, `form`);
+    await waitFor(() => container.querySelector(`#btn-confirmar`));
+    const btnConfirmar = container.querySelector(`#btn-confirmar`);
+    const form = container.querySelector(`#form`);
 
     expect(btnConfirmar).toBeInTheDocument();
     expect(form).not.toBeNull();
     expect(form).toBeInTheDocument();
   });
 
-  it('Verifica se há click no botão:', async () => {
+  test('Verifica se há click no botão:', async () => {
     // arrange
     // act
-
+    const { container } = render(<Pagina />);
     act(() => {
       render(<Pagina />);
     });
 
     // assert
-    await waitFor(() => queryById(document, `btn-confirmar`));
-    const btnConfirmar = queryById(document, `btn-confirmar`);
-    const form = queryById(document, `form`);
-    userEvent.click(btnConfirmar);
+    await waitFor(() => container.querySelector(`#btn-confirmar`));
+    const btnConfirmar = container.querySelector(`#btn-confirmar`);
+    const form = container.querySelector(`#form`);
+    userEvent.click(btnConfirmar as Element);
     expect(btnConfirmar).toBeInTheDocument();
     expect(form).not.toBeNull();
     expect(form).toBeInTheDocument();

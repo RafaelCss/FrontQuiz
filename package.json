@@ -13,7 +13,11 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown",
-    "*.{js,css,md}": "prettier --write"
+    "*.js": [
+      "npm run test",
+      "git add ."
+    ],
+    "*.{js,css,md,ts,tsx}": "prettier --write"
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.5",
