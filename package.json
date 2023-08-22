@@ -15,7 +15,7 @@
     "**/*": "prettier --write --ignore-unknown",
     "*.tsx": [
       "npm run test",
-      "git add ."
+      "git add"
     ],
     "*.{js,css,md,ts,tsx}": "prettier --write"
   },
