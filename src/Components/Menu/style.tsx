@@ -25,11 +25,11 @@ const ButtonMod = styled.button`
   border-radius: 10%;
   color: white;
   font-family: 'Tilt Warp', cursive;
-  font-size: 1rem;
+  font-size: 1.5rem;
   border: none;
-  background-color: #1816164e;
+  background-color: #1de70bf0;
   &:hover {
-    background-color: #fbf9f916;
+    background-color: #7fe976ef;
     color: white;
   }
 `;

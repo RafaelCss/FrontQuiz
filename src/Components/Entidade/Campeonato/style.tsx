@@ -3,12 +3,13 @@ import styled from 'styled-components';
 export const ContainerTabela = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   width: 80vw;
-  padding-top: 30px;
+  //padding-top: 300px;
+  background-color: green;
   align-items: center;
   background-color: black;
-  margin: 100px 50px;
+  margin-top: 50px;
 `;
 
 export const Td = styled.td`

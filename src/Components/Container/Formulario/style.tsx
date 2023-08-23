@@ -8,10 +8,9 @@ const ContainerFormulario = styled.main`
   flex-direction: column;
   margin-top: 10rem;
   margin-bottom: 10rem;
-  background-color: #080808b3;
   width: 40%;
   height: 60%;
-  color: black;
+  color: #fce515;
   flex-wrap: nowrap;
   position: relative;
 `;
