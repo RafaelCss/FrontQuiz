@@ -5,15 +5,15 @@ const contentStyle: React.CSSProperties = {
   margin: 0,
   height: '400px',
   color: '#fff',
-  lineHeight: '160px',
   textAlign: 'center',
   background: '#364d79',
+  alignItems: 'center',
+  justifyContent: 'center',
+  display: 'flex',
 };
 
 const Home: React.FC = () => {
-  const onChange = (currentSlide: number) => {
-    console.log(currentSlide);
-  };
+  const onChange = (currentSlide: number) => {};
 
   const imagePaths = [
     '/imagem1.jpg',
@@ -25,11 +25,11 @@ const Home: React.FC = () => {
   return (
     <main
       style={{
-        display: 'flex',
+        display: 'block',
         justifyContent: 'center',
-        width: '70vw',
-        height: '100vh',
-        flexDirection: 'column',
+        width: '100%',
+        height: '100%',
+        alignContent: 'center',
       }}>
       <Carousel afterChange={onChange} autoplay>
         {imagePaths.map((imagem) => (
