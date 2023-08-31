@@ -5,7 +5,7 @@ function DownloadArquivos() {
   const handleDownload = async (fileName: string) => {
     try {
       const response = await axios.get(
-        `http://localhost:5167/api/Documento/baixar/${fileName}`,
+        `${process.env.NEXT_PUBLIC_URL_API_URL_ARQUIVOS}${fileName}`,
         {
           headers: {
             Accept: 'application/octet-stream',
