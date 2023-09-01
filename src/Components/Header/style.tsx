@@ -10,7 +10,7 @@ const HeaderMod = styled(Header)`
   width: 100%;
   align-items: center;
   justify-content: space-around;
-  background: rgba(10, 238, 10, 0.637);
+  background: rgba(17, 63, 17, 0.637);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(3.8px);
   -webkit-backdrop-filter: blur(3.8px);
