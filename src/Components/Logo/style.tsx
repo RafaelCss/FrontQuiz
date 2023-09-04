@@ -10,8 +10,9 @@ import styled from 'styled-components';
 const DivLogo = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 30%;
-  height: 100%;
+  height: 10rem;
   color: white;
   font-size: 2rem;
   font-family: 'Tilt Warp', cursive;

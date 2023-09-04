@@ -28,6 +28,7 @@ const ButtonMod = styled.button`
   font-size: 1.5rem;
   border: none;
   background-color: #1de70bf0;
+  text-decoration: none;
   &:hover {
     background-color: #7fe976ef;
     color: white;
