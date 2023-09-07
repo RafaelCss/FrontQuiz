@@ -8,7 +8,7 @@ const ContainerFormulario = styled.main`
   flex-direction: column;
   margin-top: 10rem;
   margin-bottom: 10rem;
-  width: 40%;
+  width: 100vw;
   height: 60%;
   color: #fce515;
   flex-wrap: nowrap;

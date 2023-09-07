@@ -10,7 +10,6 @@ const Titulo = styled.div`
   font-weight: 5rem;
   text-align: center;
   align-items: center;
-  margin-top: 50px;
 `;
 
 export default Titulo;

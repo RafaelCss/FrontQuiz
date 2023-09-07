@@ -9,7 +9,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import MainFormulario from './style';
+import S from './style';
 import servico from '@/Func/servicos/usuarioServico';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { Usuario } from '../Model';
@@ -23,16 +23,24 @@ import {
   formRuleErrorsServidor,
   transformErrorMessage,
 } from '@/Func/lib/utius';
-interface IFormulario {
-  setChecked: Dispatch<SetStateAction<boolean>>;
-  checked: boolean;
-}
+import Titulo from '@/Components/Container/Titulo/style';
 
 const placeHolder = (item: string) => `Digite ${item}`;
-
-function Formulario({ setChecked, checked }: IFormulario) {
+const logar = 'Faça Login:';
+const cadastro = 'Realize seu cadastro:';
+function Formulario() {
   const [form] = Form.useForm<Usuario>();
   const [erros, setErros] = useState<Dictionary<string[]>>({});
+  const [checked, setChecked] = useState<boolean>(false);
+  const [tituloForm, setTituloForm] = useState<string>();
+
+  useEffect(() => {
+    if (checked) {
+      setTituloForm(cadastro);
+    } else {
+      setTituloForm(logar);
+    }
+  }, [checked]);
 
   function validarForm() {
     form
@@ -72,7 +80,10 @@ function Formulario({ setChecked, checked }: IFormulario) {
   useEffect(renderErrors, [renderErrors]);
 
   return (
-    <MainFormulario>
+    <S.MainFormulario>
+      <Titulo>
+        <h2>{tituloForm}</h2>
+      </Titulo>
       <Form
         id="form"
         form={form}
@@ -127,7 +138,12 @@ function Formulario({ setChecked, checked }: IFormulario) {
           />
         </Form.Item>
         <div
-          style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+          style={{
+            display: 'flex',
+            width: '100%',
+            justifyContent: 'center',
+            marginTop: '5px',
+          }}>
           <Space direction="horizontal">
             <Button id="btn-confirmar" onClick={validarForm}>
               Confirmar
@@ -135,13 +151,13 @@ function Formulario({ setChecked, checked }: IFormulario) {
             <Button onClick={cancelarEnvio}>Cancelar</Button>
           </Space>
         </div>
-        <Form.Item name={'checked'}>
+        <Form.Item name={'checked'} style={{ marginTop: '5px' }}>
           <Checkbox checked={checked} onChange={onChange}>
             Não possuo cadastro.
           </Checkbox>
         </Form.Item>
       </Form>
-    </MainFormulario>
+    </S.MainFormulario>
   );
 }
 
