@@ -27,11 +27,10 @@ const ButtonMod = styled.button`
   font-family: 'Tilt Warp', cursive;
   font-size: 1.5rem;
   border: none;
-  background-color: #1de70bf0;
+  background-color: transparent;
   text-decoration: none;
   &:hover {
-    background-color: #7fe976ef;
-    color: white;
+    background-color: #c3f5be21;
   }
 `;
 

@@ -1,10 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
-import { Corrosel } from './style';
+import { Container, Corrosel, TituloHome } from './style';
+import Titulo from '@/Components/Container/Titulo/style';
 
 const Home: React.FC = () => {
-  const onChange = (currentSlide: number) => {};
-
   const imagePaths = [
     '/imagem1.jpg',
     '/imagem4.jpeg',
@@ -13,13 +12,16 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div style={{ display: 'flex', gap: '5px' }}>
-      {imagePaths.map((imagem) => (
-        <Corrosel key={imagem.toString()}>
-          <Image src={imagem} alt="imagem futebol" width={400} height={400} />
-        </Corrosel>
-      ))}
-    </div>
+    <Container>
+      <TituloHome>Tudo sobre futebol</TituloHome>
+      <div style={{ display: 'flex', gap: '5px' }}>
+        {imagePaths.map((imagem) => (
+          <Corrosel key={imagem.toString()}>
+            <Image src={imagem} alt="imagem futebol" width={400} height={400} />
+          </Corrosel>
+        ))}
+      </div>
+    </Container>
   );
 };
 
