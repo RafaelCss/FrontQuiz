@@ -46,15 +46,16 @@ function Formulario() {
     form
       .validateFields()
       .then(async (dados) => {
-        const resposta = await servico.postCadastroUsuario(dados);
+        const resposta = await servico.logarOuCadastrar(dados, checked);
         if (resposta.sucesso) {
           message.success('Usuario cadastrado');
           setErros({});
           return;
+        } else {
+          message.error(resposta.message);
+          console.log(resposta.erros);
+          setErros(transformErrorMessage(resposta.erros as any));
         }
-        message.error(resposta.message);
-        console.log(resposta.erros);
-        setErros(transformErrorMessage(resposta.erros as any));
       })
       .catch((err) => {
         console.log(err);

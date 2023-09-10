@@ -6,6 +6,10 @@ import { Retorno } from '../Model';
 
 type CadastroUsuario = (usuario: Usuario) => Promise<Retorno<Usuario>>;
 type LoginUsuario = (usuario: Usuario) => Promise<Retorno<Usuario>>;
+type LogarOuCadastrar = (
+  usuario: Usuario,
+  logar: boolean
+) => Promise<Retorno<Usuario>>;
 
 const postCadastroUsuario: CadastroUsuario = async (
   dados: Usuario
@@ -25,4 +29,9 @@ const postLoginUsuario: LoginUsuario = async (
     .catch((err) => err);
 };
 
-export default { postCadastroUsuario, postLoginUsuario };
+const logarOuCadastrar: LogarOuCadastrar = async (
+  dados: Usuario,
+  logar: boolean
+) => (!logar ? postLoginUsuario(dados) : postCadastroUsuario(dados));
+
+export default { postCadastroUsuario, postLoginUsuario, logarOuCadastrar };
