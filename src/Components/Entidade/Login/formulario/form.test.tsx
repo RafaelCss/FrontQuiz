@@ -31,9 +31,9 @@ describe('Testa o Componente Formulario:', () => {
     });
 
     // assert
-    await waitFor(() => queryById(document, `form`));
+    await waitFor(() => document.querySelector(`#form`));
 
-    const form = queryById(document, `form`);
+    const form = document.querySelector(`#form`);
 
     expect(screen.getByText('Senha')).toBeInTheDocument();
     expect(form).not.toBeNull();
@@ -53,9 +53,9 @@ describe('Testa o Componente Formulario:', () => {
     });
 
     // assert
-    await waitFor(() => queryById(document, `btn-confirmar`));
-    const btnConfirmar = queryById(document, `btn-confirmar`);
-    const form = queryById(document, `form`);
+    await waitFor(() => document.querySelector(`#btn-confirmar`));
+    const btnConfirmar = document.querySelector(`#btn-confirmar`);
+    const form = document.querySelector(`#form`);
 
     expect(btnConfirmar).toBeInTheDocument();
     expect(form).not.toBeNull();
