@@ -40,7 +40,7 @@ describe('Testa o Componente Formulario:', () => {
     expect(form).toBeInTheDocument();
   });
 
-  it('Verifica se o botão em   está sendo renderizado:', async () => {
+  it('Verifica se o botão em está sendo renderizado:', async () => {
     // arrange
     // act
 
