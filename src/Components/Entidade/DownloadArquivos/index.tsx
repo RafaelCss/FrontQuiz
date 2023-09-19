@@ -35,7 +35,7 @@ function DownloadArquivos() {
       console.error('Erro ao fazer o download:', error);
     }
   };
-
+  // TODO:retirar esse arquivo do projeto
   return (
     <div>
       <button onClick={() => handleDownload('video.mp4')}>Baixar PDF</button>
