@@ -14,7 +14,7 @@ import servico from '@/Func/servicos/usuarioServico';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { Usuario } from '../Model';
 import Erros, { Dictionary } from '@/Func/Model';
-
+import { signIn } from 'next-auth/react';
 //import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import type { ValidatorRule, Callbacks } from 'rc-field-form/lib/interface';
 import {
@@ -46,16 +46,19 @@ function Formulario() {
     form
       .validateFields()
       .then(async (dados) => {
-        const resposta = await servico.logarOuCadastrar(dados, checked);
-        if (resposta.sucesso) {
-          message.success('Usuario cadastrado');
-          setErros({});
-          return;
-        } else {
-          message.error(resposta.message);
-          console.log(resposta.erros);
-          setErros(transformErrorMessage(resposta.erros as any));
-        }
+        signIn('credentials', {
+          ...dados,
+          redirect: false,
+        });
+        // if (resposta.sucesso) {
+        //   message.success('Usuario cadastrado');
+        //   setErros({});
+        //   return;
+        // } else {
+        //   message.error(resposta.message);
+        //   console.log(resposta.erros);
+        //   setErros(transformErrorMessage(resposta.erros as any));
+        // }
       })
       .catch((err) => {
         console.log(err);
