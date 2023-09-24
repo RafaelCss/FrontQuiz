@@ -18,7 +18,7 @@ export const Td = styled.td`
   padding: 3px 10px;
   // border: dashed 1px #d4d4cff4;
   width: 120px;
-  height: 1rem;
+  height: 2.5rem;
 `;
 
 export const Th = styled.th`
@@ -27,5 +27,5 @@ export const Th = styled.th`
   border: solid 1px #d4d4cff4;
   margin-bottom: 5px;
   width: 120px;
-  height: 1rem;
+  height: 2.5rem;
 `;
