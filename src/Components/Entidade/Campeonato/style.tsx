@@ -17,8 +17,8 @@ export const Td = styled.td`
   text-align: center;
   padding: 3px 10px;
   // border: dashed 1px #d4d4cff4;
-  width: 5rem;
-  height: 1.5rem;
+  width: 7rem;
+  height: 1rem;
 `;
 
 export const Th = styled.th`
@@ -26,6 +26,6 @@ export const Th = styled.th`
   padding: 3px 10px;
   border: solid 1px #d4d4cff4;
   margin-bottom: 5px;
-  width: 5rem;
-  height: 1.5rem;
+  width: 6rem;
+  height: 1rem;
 `;
