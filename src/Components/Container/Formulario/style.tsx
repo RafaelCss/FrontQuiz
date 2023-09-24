@@ -8,11 +8,12 @@ const ContainerFormulario = styled.main`
   flex-direction: column;
   margin-top: 10rem;
   margin-bottom: 10rem;
-  width: 100vw;
+  width: 100%;
   height: 60%;
   color: #fce515;
   flex-wrap: nowrap;
   position: relative;
+  overflow: hidden;
 `;
 
 export default ContainerFormulario;

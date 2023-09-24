@@ -14,7 +14,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 20rem;
+  gap: 2rem;
 `;
 
 const TituloHome = styled.h1`
