@@ -1,9 +1,9 @@
 /* eslint-disable import/no-anonymous-default-export */
 
 import { Usuario } from '@/Components/Entidade/Login/Model';
-import api from '../configAxios';
+import servicoAxios from '../lib/hooks/configAxios';
 import { Retorno } from '../Model';
-
+const api = servicoAxios();
 type CadastroUsuario = (usuario: Usuario) => Promise<Retorno<Usuario>>;
 type LoginUsuario = (usuario: Usuario) => Promise<Retorno<Usuario>>;
 type LogarOuCadastrar = (

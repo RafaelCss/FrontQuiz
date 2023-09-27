@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { ITabelaCampeonato } from '@/Components/Models';
-import api from '../configAxios';
+import servicoAxios from '../lib/hooks/configAxios';
 interface ApiResponse<T> {
   success: boolean;
   message: string;
@@ -11,7 +11,7 @@ interface ApiResponse<T> {
 }
 
 type RespostaTabela = () => Promise<ApiResponse<ITabelaCampeonato[]>>;
-
+const api = servicoAxios();
 const getDadosTabela: RespostaTabela = () => {
   return api
     .get<ApiResponse<ITabelaCampeonato[]>>('tabela')
