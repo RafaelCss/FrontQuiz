@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { ITabelaCampeonato } from '@/Components/Models';
 import servicoAxios from '../lib/hooks/configAxios';
+('Client');
 interface ApiResponse<T> {
   success: boolean;
   message: string;
@@ -10,13 +11,13 @@ interface ApiResponse<T> {
   pageIndex: number;
 }
 
-type RespostaTabela = () => Promise<ApiResponse<ITabelaCampeonato[]>>;
+type RespostaTabela = () => Promise<any[]>;
+
 const api = servicoAxios();
-const getDadosTabela: RespostaTabela = () => {
-  return api
-    .get<ApiResponse<ITabelaCampeonato[]>>('tabela')
-    .then((res) => res.data)
-    .catch((err) => err);
+const getDadosTabela: RespostaTabela = async () => {
+  const resposta = await api.get<any[]>('tabela');
+  console.log(resposta);
+  return resposta.data;
 };
 
 export default { getDadosTabela };
