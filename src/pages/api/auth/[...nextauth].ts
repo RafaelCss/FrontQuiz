@@ -1,6 +1,7 @@
 import NextAuth, { NextAuthOptions, Session } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import servico from '@/Func/servicos/usuarioServico';
+import { use } from 'react';
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
@@ -11,8 +12,9 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         const res = await servico.logarOuCadastrar(credentials as any, false);
-        const user = res.dados;
-        if (res.sucesso && user) {
+        const user = res;
+        if (user) {
+          console.log(user);
           return user as any;
         }
         return null;
@@ -20,24 +22,28 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: 'jwt',
+  },
   callbacks: {
-    session({ session, token }) {
-      const newSession = {
-        ...session,
-      } as Session;
-      console.log(newSession, token);
-      return newSession;
+    async redirect({ url, baseUrl }) {
+      // Allows relative callback URLs
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
+      // Allows callback URLs on the same origin
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
     },
-    async signIn({ user, account, profile, email, credentials }) {
-      const isAllowedToSignIn = true;
-      if (isAllowedToSignIn) {
-        return true;
-      } else {
-        // Return false to display a default error message
-        return false;
-        // Or you can return a URL to redirect to:
-        // return '/unauthorized'
+    async session({ session, token, user }) {
+      console.log(token);
+      // Send properties to the client, like an access_token and user id from a provider.
+      return session;
+    },
+    async jwt({ token, account, profile }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token;
       }
+      return token;
     },
   },
 };

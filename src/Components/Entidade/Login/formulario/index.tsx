@@ -46,7 +46,7 @@ function Formulario() {
     form
       .validateFields()
       .then(async (dados) => {
-        signIn('credentials', {
+        signIn('Credentials', {
           ...dados,
           redirect: false,
         });

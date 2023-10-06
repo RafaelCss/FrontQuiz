@@ -15,26 +15,26 @@ function servicoAxios(): AxiosInstance {
     },
   });
 
-  api.interceptors.request.use(async (request) => {
-    const session = await getSession();
+  // api.interceptors.request.use(async (request) => {
+  //   const session = await getSession();
 
-    if (session) {
-      request.headers.common = {
-        Authorization: `Bearer  ${session}`,
-      };
-    }
+  //   if (session) {
+  //     request.headers.common = {
+  //       Authorization: `Bearer  ${session}`,
+  //     };
+  //   }
 
-    return request;
-  });
+  //   return request;
+  // });
 
-  api.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    (error) => {
-      console.log('error', error);
-    }
-  );
+  // api.interceptors.response.use(
+  //   (response) => {
+  //     return response;
+  //   },
+  //   (error) => {
+  //     console.log('error', error);
+  //   }
+  // );
 
   return api;
 }
