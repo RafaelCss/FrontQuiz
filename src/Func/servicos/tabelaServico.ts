@@ -16,7 +16,6 @@ type RespostaTabela = () => Promise<any[]>;
 const api = servicoAxios();
 const getDadosTabela: RespostaTabela = async () => {
   const resposta = await api.get<any[]>('tabela');
-  console.log(resposta);
   return resposta.data;
 };
 
