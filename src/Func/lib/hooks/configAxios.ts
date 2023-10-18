@@ -9,7 +9,7 @@ function servicoAxios(): AxiosInstance {
     headers: {
       'Content-Type': 'application/json',
     },
-    withCredentials: true,
+    //  withCredentials: true,
     paramsSerializer: {
       dots: true,
     },
