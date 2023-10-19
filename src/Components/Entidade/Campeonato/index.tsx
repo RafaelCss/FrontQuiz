@@ -13,11 +13,14 @@ import { Space } from 'antd';
 import { ITabelaCampeonato } from '@/Components/Models';
 
 function TabelaCampeonato() {
-  const { data, error, isLoading, mutate } = useSWR('Tabela', async () =>
-    servico.getDadosTabela()
-  );
+  const {
+    data: dados,
+    error,
+    isLoading,
+    mutate,
+  } = useSWR('Tabela', async () => servico.getDadosTabela());
 
-  const dadosTabela: ITabelaCampeonato[] = data?.dados || [];
+  const dadosTabela: ITabelaCampeonato[] = dados || [];
 
   return (
     <ContainerTabela>
