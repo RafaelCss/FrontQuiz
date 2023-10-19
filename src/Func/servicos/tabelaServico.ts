@@ -11,12 +11,11 @@ interface ApiResponse<T> {
   pageIndex: number;
 }
 
-type RespostaTabela = () => Promise<any[]>;
+type RespostaTabela = () => Promise<ApiResponse<ITabelaCampeonato[]>>;
 
 const api = servicoAxios();
 const getDadosTabela: RespostaTabela = async () => {
-  const resposta = await api.get<any[]>('tabela');
-  console.log(resposta);
+  const resposta = await api.get<ApiResponse<ITabelaCampeonato[]>>('tabela');
   return resposta.data;
 };
 
