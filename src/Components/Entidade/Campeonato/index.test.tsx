@@ -6,6 +6,7 @@ describe('Criando teste da tabela do campeonato', () => {
     render(<TabelaCampeonato />);
 
     expect(screen.getByText('Time')).toBeInTheDocument;
+    expect(screen.getByText('Time')).toBeInTheDocument;
     expect(screen.getByText('Pontos')).toBeInTheDocument;
     expect(screen.getByText('Vitorias')).toBeInTheDocument;
   });
