@@ -1,20 +1,19 @@
-import NextAuth, { NextAuthOptions, Session } from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import servico from '@/Func/servicos/usuarioServico';
-import { use } from 'react';
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
-        senha: { label: 'senha', type: 'password' },
         email: { label: 'email', type: 'text' },
+        senha: { label: 'senha', type: 'password' },
       },
       async authorize(credentials, req) {
         const res = await servico.logarOuCadastrar(credentials as any, false);
         const user = res;
+        console.log(user);
         if (user) {
-          console.log(user);
           return user as any;
         }
         return null;
@@ -22,9 +21,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
-  session: {
-    strategy: 'jwt',
-  },
+
   callbacks: {
     async redirect({ url, baseUrl }) {
       // Allows relative callback URLs
@@ -34,13 +31,12 @@ export const authOptions: NextAuthOptions = {
       return baseUrl;
     },
     async session({ session, token, user }) {
-      console.log(session);
-      // Send properties to the client, like an access_token and user id from a provider.
+      console.log(session, token, user);
       return session;
     },
     async jwt({ token, account, profile }) {
-      // Persist the OAuth access_token and or the user id to the token right after signin
       if (account) {
+        // Aqui você pode definir o accessToken no token
         token.accessToken = account.access_token;
       }
       return token;

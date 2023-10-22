@@ -9,7 +9,7 @@ function servicoAxios(): AxiosInstance {
     headers: {
       'Content-Type': 'application/json',
     },
-    //  withCredentials: true,
+    // withCredentials: true,
     paramsSerializer: {
       dots: true,
     },
@@ -20,7 +20,7 @@ function servicoAxios(): AxiosInstance {
 
   //   if (session) {
   //     request.headers.common = {
-  //       Authorization: `Bearer  ${session}`,
+  //       Authorization: `Bearer  ${session.user}`,
   //     };
   //   }
 
