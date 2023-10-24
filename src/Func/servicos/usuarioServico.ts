@@ -1,15 +1,12 @@
 /* eslint-disable import/no-anonymous-default-export */
 
-import { Usuario } from '@/Components/Entidade/Login/Model';
+import { RetornoToken, Usuario } from '@/Components/Entidade/Login/Model';
 import servicoAxios from '../lib/hooks/configAxios';
 import { Retorno } from '../Model';
 const api = servicoAxios();
 type CadastroUsuario = (usuario: Usuario) => Promise<Retorno<Usuario>>;
-type LoginUsuario = (usuario: Usuario) => Promise<Retorno<Usuario>>;
-type LogarOuCadastrar = (
-  usuario: Usuario,
-  logar: boolean
-) => Promise<Retorno<Usuario>>;
+type LoginUsuario = (usuario: Usuario) => Promise<RetornoToken>;
+type LogarOuCadastrar = (usuario: Usuario, logar: boolean) => Promise<any>;
 
 const postCadastroUsuario: CadastroUsuario = async (
   dados: Usuario
@@ -22,7 +19,7 @@ const postCadastroUsuario: CadastroUsuario = async (
 
 const postLoginUsuario: LoginUsuario = async (
   dados: Usuario
-): Promise<Retorno<Usuario>> => {
+): Promise<RetornoToken> => {
   return await api
     .post<Retorno<Usuario>>('login', dados)
     .then((res) => res.data)

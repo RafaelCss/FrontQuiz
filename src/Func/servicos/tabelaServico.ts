@@ -1,7 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { ITabelaCampeonato } from '@/Components/Models';
 import servicoAxios from '../lib/hooks/configAxios';
-('Client');
+
 interface ApiResponse<T> {
   success: boolean;
   message: string;

@@ -1,5 +1,3 @@
-/* eslint-disable */
-'server';
 import axios, { AxiosInstance } from 'axios';
 import { getSession, useSession } from 'next-auth/react';
 
@@ -9,32 +7,22 @@ function servicoAxios(): AxiosInstance {
     headers: {
       'Content-Type': 'application/json',
     },
-    // withCredentials: true,
+    withCredentials: true,
     paramsSerializer: {
       dots: true,
     },
   });
 
-  // api.interceptors.request.use(async (request) => {
-  //   const session = await getSession();
+  api.interceptors.request.use(async (request) => {
+    const session = await getSession();
+    if (session) {
+      request.headers.common = {
+        Authorization: `Bearer  ${session?.user?.accessToken}`,
+      };
+    }
 
-  //   if (session) {
-  //     request.headers.common = {
-  //       Authorization: `Bearer  ${session.user}`,
-  //     };
-  //   }
-
-  //   return request;
-  // });
-
-  // api.interceptors.response.use(
-  //   (response) => {
-  //     return response;
-  //   },
-  //   (error) => {
-  //     console.log('error', error);
-  //   }
-  // );
+    return request;
+  });
 
   return api;
 }

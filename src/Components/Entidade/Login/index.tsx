@@ -3,6 +3,8 @@ import Formulario from './formulario';
 import ContainerFormulario from '@/Components/Container/Formulario/style';
 
 function Pagina() {
+  const { data: session } = useSession();
+  console.log(session?.user?.accessToken);
   return (
     <ContainerFormulario>
       <Formulario />
