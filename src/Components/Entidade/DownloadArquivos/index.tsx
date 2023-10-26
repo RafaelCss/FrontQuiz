@@ -38,7 +38,9 @@ function DownloadArquivos() {
   // TODO:retirar esse arquivo do projeto
   return (
     <div>
-      <button onClick={() => handleDownload('video.mp4')}>Baixar PDF</button>
+      <button onClick={() => handleDownload('seuarquivo.pdf')}>
+        Baixar PDF
+      </button>
     </div>
   );
 }
