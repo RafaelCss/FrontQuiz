@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-
 import axios from 'axios';
-import { CSSProperties } from 'styled-components';
+import { DivCenterStyle, IFrame } from './style';
 
 function PDFView() {
   const [blobURL, setBlobURL] = useState(null);
@@ -12,13 +11,14 @@ function PDFView() {
         `${process.env.NEXT_PUBLIC_URL_API_URL_ARQUIVOS}${fileName}`,
         {
           headers: {
-            Accept: 'application/pdf', // Use 'application/pdf' for PDF files
+            Accept: 'application/pdf',
           },
-          responseType: 'arraybuffer', // Use responseType: 'arraybuffer'
+          responseType: 'arraybuffer',
         }
       );
       const blob = new Blob([response.data], {
-        type: 'application/pdf', // Use 'application/pdf' for PDF files
+        type: 'application/pdf',
+        endings: 'native',
       });
 
       // Cria uma URL temporária para o blob
@@ -34,25 +34,10 @@ function PDFView() {
     handleDisplayPDF('seuarquivo.pdf');
   }, []);
 
-  const centerStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-  };
   return (
-    <div style={centerStyle}>
-      {blobURL && (
-        <iframe
-          src={blobURL}
-          width="800"
-          height="800"
-          style={{
-            border: 'none', // Remova qualquer borda   // Remova qualquer preenchimento
-            display: 'block', // Garanta que o iframe ocupe o espaço inteiro    // Defina a altura do cabeçalho como zero
-          }}></iframe>
-      )}
-    </div>
+    <DivCenterStyle>
+      {blobURL && <IFrame src={blobURL} title="Meu iFrame" />}
+    </DivCenterStyle>
   );
 }
 

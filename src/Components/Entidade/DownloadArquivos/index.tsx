@@ -16,6 +16,7 @@ function DownloadArquivos() {
       console.log(response);
       const blob = new Blob([response.data], {
         type: 'application/octet-stream',
+        endings: 'native',
       });
 
       // Cria uma URL temporária para o blob
