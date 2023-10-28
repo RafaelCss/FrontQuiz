@@ -58,7 +58,10 @@ function Formulario() {
             setErros(transformErrorMessage(resposta.erros as any));
           }
         } else {
-          signIn();
+          signIn('Credentials', {
+            ...dados,
+            redirect: false,
+          });
         }
       })
       .catch((err) => {

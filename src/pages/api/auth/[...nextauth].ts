@@ -14,13 +14,7 @@ export const authOptions: NextAuthOptions = {
         const res = await servico.postLoginUsuario(credentials as any);
         const user = res;
         if (user) {
-          return {
-            ...user,
-            accessToken: user.access_token,
-            name: user.name,
-            email: user.email,
-            token_type: 'Bearer',
-          } as any;
+          return user as any;
         }
         return null;
       },
@@ -30,10 +24,6 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-
-  // pages:{
-  //   signIn:'/Logar'
-  // },
 
   callbacks: {
     async session({ session, token, user }) {
@@ -60,7 +50,8 @@ export const authOptions: NextAuthOptions = {
     },
     redirect({ url, baseUrl }) {
       // Allows relative callback URLs
-      if (url.startsWith('/')) return `${baseUrl}${url}`;
+      console.log(url);
+      if (url.startsWith('/')) return `${url}`;
       // Allows callback URLs on the same origin
       else if (new URL(url).origin === baseUrl) return url;
       return baseUrl;
