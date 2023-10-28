@@ -25,7 +25,7 @@ function TabelaCampeonato() {
     servico.getDadosTabela(session?.user?.accessToken as string)
   );
   const dadosTabela: ITabelaCampeonato[] = dados?.dados || [];
-
+  //const tabelaOrdenada = dadosTabela.sort((a, b) => b.pontos - a.pontos);
   return (
     <ContainerTabela>
       <h1>Tabela de Campeonato Brasileiro</h1>

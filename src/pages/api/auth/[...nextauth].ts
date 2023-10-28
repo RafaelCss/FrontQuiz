@@ -31,6 +31,10 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
 
+  // pages:{
+  //   signIn:'/Logar'
+  // },
+
   callbacks: {
     async session({ session, token, user }) {
       const newSession = {

@@ -1,7 +1,5 @@
 import Pagina from '@/Components/Entidade/Login/index';
 
-function Logar() {
+export default function Logar() {
   return <Pagina />;
 }
-
-export default Logar;

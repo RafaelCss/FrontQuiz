@@ -46,19 +46,20 @@ function Formulario() {
     form
       .validateFields()
       .then(async (dados) => {
-        signIn('Credentials', {
-          ...dados,
-          redirect: false,
-        });
-        // if (resposta.sucesso) {
-        //   message.success('Usuario cadastrado');
-        //   setErros({});
-        //   return;
-        // } else {
-        //   message.error(resposta.message);
-        //   console.log(resposta.erros);
-        //   setErros(transformErrorMessage(resposta.erros as any));
-        // }
+        if (checked) {
+          const resposta = await servico.postCadastroUsuario(dados);
+          if (resposta.sucesso) {
+            message.success('Usuario cadastrado');
+            setErros({});
+            return;
+          } else {
+            message.error(resposta.message);
+            console.log(resposta.erros);
+            setErros(transformErrorMessage(resposta.erros as any));
+          }
+        } else {
+          signIn();
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -96,51 +97,53 @@ function Formulario() {
         onValuesChange={formHandleErrors(erros, setErros)}
         scrollToFirstError>
         {checked && (
-          <Form.Item
-            name={['nome']}
-            label="Nome"
-            rules={[
-              formRuleErrorsServidor(erros as any),
-              { required: true, message: 'Nome é obrigatório' },
-            ]}
-            required>
-            <InputMod
-              name="nome"
-              id="input-nome"
-              placeholder={placeHolder('seu usuário')}
-              autoComplete="off"
-            />
-          </Form.Item>
+          <>
+            <Form.Item
+              name={['nome']}
+              label="Nome"
+              rules={[
+                formRuleErrorsServidor(erros as any),
+                { required: true, message: 'Nome é obrigatório' },
+              ]}
+              required>
+              <InputMod
+                name="nome"
+                id="input-nome"
+                placeholder={placeHolder('seu usuário')}
+                autoComplete="off"
+              />
+            </Form.Item>
+            <Form.Item
+              name={['email']}
+              label={'Email'}
+              rules={[
+                formRuleErrorsServidor(erros as any),
+                { required: true, message: 'Email é obrigatório' },
+              ]}>
+              <InputMod
+                id="input-email"
+                name="email"
+                placeholder={placeHolder('seu email')}
+                autoComplete="off"
+              />
+            </Form.Item>
+            <Form.Item
+              name={['senha']}
+              label={'Senha'}
+              rules={[
+                formRuleErrorsServidor(erros as any),
+                { required: true, message: 'Senha é obrigatória' },
+              ]}>
+              <Input.Password
+                id="input-senha"
+                name="senha"
+                placeholder={placeHolder('sua senha')}
+                autoComplete="off"
+                style={{ height: '4rem' }}
+              />
+            </Form.Item>
+          </>
         )}
-        <Form.Item
-          name={['email']}
-          label={'Email'}
-          rules={[
-            formRuleErrorsServidor(erros as any),
-            { required: true, message: 'Email é obrigatório' },
-          ]}>
-          <InputMod
-            id="input-email"
-            name="email"
-            placeholder={placeHolder('seu email')}
-            autoComplete="off"
-          />
-        </Form.Item>
-        <Form.Item
-          name={['senha']}
-          label={'Senha'}
-          rules={[
-            formRuleErrorsServidor(erros as any),
-            { required: true, message: 'Senha é obrigatória' },
-          ]}>
-          <Input.Password
-            id="input-senha"
-            name="senha"
-            placeholder={placeHolder('sua senha')}
-            autoComplete="off"
-            style={{ height: '4rem' }}
-          />
-        </Form.Item>
         <div
           style={{
             display: 'flex',

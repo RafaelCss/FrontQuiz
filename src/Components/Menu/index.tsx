@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Style from './style';
+import { signIn } from 'next-auth/react';
 
 function Menu() {
   const listaDeBotoes = [
@@ -11,7 +12,12 @@ function Menu() {
     'Upload',
     'PDF',
   ];
-
+  function logar() {
+    console.log('oi');
+    // signIn('Credentials', {
+    //   redirect: false,
+    // });
+  }
   return (
     <Style.ContainerMenu>
       {listaDeBotoes.map((btn) => (
