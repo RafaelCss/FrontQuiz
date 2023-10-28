@@ -13,7 +13,6 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials, req) {
         const res = await servico.postLoginUsuario(credentials as any);
         const user = res;
-        console.log(user);
         if (user) {
           return {
             ...user,

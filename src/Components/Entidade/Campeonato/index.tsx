@@ -11,15 +11,19 @@ import useSWR from 'swr';
 import servico from '@/Func/servicos/tabelaServico';
 import { Space } from 'antd';
 import { ITabelaCampeonato } from '@/Components/Models';
-
+import servicoAxios from '@/Func/lib/hooks/configAxios';
+import { useSession } from 'next-auth/react';
+const api = servicoAxios();
 function TabelaCampeonato() {
+  const { data: session } = useSession();
   const {
     data: dados,
     error,
     isLoading,
     mutate,
-  } = useSWR('Tabela', async () => servico.getDadosTabela());
-
+  } = useSWR('Tabela', async () =>
+    servico.getDadosTabela(session?.user?.accessToken as string)
+  );
   const dadosTabela: ITabelaCampeonato[] = dados?.dados || [];
 
   return (

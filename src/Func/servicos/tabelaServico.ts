@@ -11,13 +11,17 @@ interface ApiResponse<T> {
   pageIndex: number;
 }
 
-type RespostaTabela = () => Promise<ApiResponse<ITabelaCampeonato[]>>;
+type RespostaTabela = (
+  accessToken: string
+) => Promise<ApiResponse<ITabelaCampeonato[]>>;
 
-const api = servicoAxios().then((res) => res);
-const getDadosTabela: RespostaTabela = async () => {
-  const resposta = await (
-    await api
-  ).get<ApiResponse<ITabelaCampeonato[]>>('tabela');
+const api = servicoAxios();
+const getDadosTabela: RespostaTabela = async (accessToken: string) => {
+  const resposta = await api.get<ApiResponse<ITabelaCampeonato[]>>('tabela', {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
   return resposta.data;
 };
 
