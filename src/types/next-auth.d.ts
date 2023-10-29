@@ -17,8 +17,7 @@ declare module 'next-auth' {
     id: string;
     nome?: string;
     email: string;
-    documento?: string;
     role: string[];
-    accessToken?: string;
+    access_token?: string;
   }
 }

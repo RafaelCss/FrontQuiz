@@ -22,8 +22,9 @@ function TabelaCampeonato() {
     isLoading,
     mutate,
   } = useSWR('Tabela', async () =>
-    servico.getDadosTabela(session?.user?.accessToken as string)
+    servico.getDadosTabela(session?.user?.access_token as string)
   );
+  console.log(session);
   const dadosTabela: ITabelaCampeonato[] = dados?.dados || [];
   //const tabelaOrdenada = dadosTabela.sort((a, b) => b.pontos - a.pontos);
   return (
