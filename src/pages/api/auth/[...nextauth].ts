@@ -15,7 +15,7 @@ export const authOptions: NextAuthOptions = {
         const user = res;
         if (user) {
           return {
-            ...user,
+            user,
             accessToken: user.access_token,
             name: user.name,
             email: user.email,
