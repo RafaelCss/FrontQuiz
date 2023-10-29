@@ -14,7 +14,7 @@ export const authOptions: NextAuthOptions = {
         const res = await servico.postLoginUsuario(credentials as any);
         const user = res;
         if (user) {
-          return { ...user } as any;
+          return { ...res.user } as any;
         }
         return null;
       },
@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, token, user }) {
       const newSession = {
-        //        ...session,
+        ...session,
         user: token.user,
         accessToken: token.accessToken,
         expires: token.accessTokenExpires,

@@ -6,11 +6,11 @@ export interface Usuario {
 }
 
 export interface RetornoToken {
-  access_token: string;
-  token_type?: 'Bearer';
-  expires: number;
-  refresh_token?: string;
-  scope?: string;
-  name?: string;
-  email?: string;
+  user?: {
+    access_token: string;
+    name?: string;
+    email?: string;
+    token_type?: 'Bearer';
+  };
+  expires?: number;
 }
