@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+'use client';
 import { InputMod } from '@/Components/Input/style';
 import { Button, Checkbox, Form, Input, Space, message } from 'antd';
 import {
