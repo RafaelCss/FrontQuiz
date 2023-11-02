@@ -6,10 +6,10 @@ import { DivCenterStyle, IFrame } from './style';
 function PDFView() {
   const [blobURL, setBlobURL] = useState(null);
 
-  const handleDisplayPDF = async (fileName: string) => {
+  const handleDisplayPDF = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_URL_API_URL_ARQUIVOS}${fileName}`,
+        `https://objectstorage.sa-saopaulo-1.oraclecloud.com/n/grf7xipreir8/b/novoconta-ea/o/TERMOS-E-CONDICOES-ADICIONAIS-PARA-TESTES-GRATUITOS-NA-PLATAFORMA-E-AUDITORIA.pdf`,
         {
           headers: {
             Accept: 'application/pdf',
@@ -32,7 +32,7 @@ function PDFView() {
   };
 
   useEffect(() => {
-    handleDisplayPDF('seuarquivo.pdf');
+    handleDisplayPDF();
   }, []);
 
   return (

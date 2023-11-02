@@ -1,4 +1,3 @@
-'use client';
 /* eslint-disable @next/next/no-img-element */
 import { ContainerTabela, Td, Th } from './style';
 import {
