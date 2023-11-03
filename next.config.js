@@ -11,7 +11,7 @@ module.exports = {
       {
         // Enabled by default in development, disabled in production to reduce file size,
         // setting this will override the default for all environments.
-        displayName: true,
+        displayName: false,
         // Enabled by default.
         ssr: true,
         // Enabled by default.
@@ -38,6 +38,11 @@ module.exports = {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
+  },
+};
+module.exports = {
+  experimental: {
+    forceSwcTransforms: true,
   },
 };
 module.exports = {
