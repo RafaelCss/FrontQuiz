@@ -6,7 +6,6 @@ const nextConfig = {
 };
 module.exports = {
   compiler: {
-    presets: [next, babel],
     reactStrictMode: true,
     // see https://styled-components.com/docs/tooling#babel-plugin for more info on the options.
     styledComponents:
