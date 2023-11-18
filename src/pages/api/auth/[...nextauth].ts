@@ -15,7 +15,7 @@ export const authOptions: NextAuthOptions = {
         const user = res;
         console.log('teste', user);
         if (user) {
-          return { ...res.user } as any;
+          return { user } as any;
         }
         return null;
       },
