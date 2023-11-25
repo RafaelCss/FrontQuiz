@@ -11,12 +11,12 @@ export default function SignIn({
     <form method="post" action="/api/auth/callback/credentials">
       <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
       <label>
-        Username
-        <input name="username" type="text" />
+        Email
+        <input name="email" type="text" />
       </label>
       <label>
-        Password
-        <input name="password" type="password" />
+        Senha
+        <input name="senha" type="password" />
       </label>
       <button type="submit">Sign in</button>
     </form>
