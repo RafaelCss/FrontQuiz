@@ -1,3 +1,4 @@
+'use client';
 import NextAuth, { NextAuthOptions, Session } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import servico from '@/Func/servicos/usuarioServico';
@@ -15,7 +16,7 @@ export const authOptions: NextAuthOptions = {
         const user = res;
         console.log('teste', user);
         if (user) {
-          return { user } as any;
+          return { ...res.user } as any;
         }
         return null;
       },
@@ -25,9 +26,9 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: 'jwt',
   },
-  // pages: {
-  //   signIn: '/Logar',
-  // },
+  pages: {
+    signIn: '/auth/signin',
+  },
 
   callbacks: {
     async session({ session, token, user }) {
