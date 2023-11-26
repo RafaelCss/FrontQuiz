@@ -11,10 +11,15 @@ export const authOptions: NextAuthOptions = {
         email: { label: 'email', type: 'text' },
         senha: { label: 'senha', type: 'password' },
       },
-      async authorize(credentials, req) {
+      type: 'credentials',
+      async authorize(req) {
+        const credentials = {
+          email: req?.email,
+          senha: req?.senha,
+        };
         const res = await servico.postLoginUsuario(credentials as any);
+        console.log(res);
         const user = res;
-        console.log('teste', user);
         if (user) {
           return { ...res.user } as any;
         }
@@ -27,7 +32,7 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   pages: {
-    signIn: '/auth/credentials-signin',
+    signIn: '/auth/signin',
   },
 
   callbacks: {
