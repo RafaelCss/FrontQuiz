@@ -6,7 +6,10 @@ import { getProviders, signIn } from 'next-auth/react';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../api/auth/[...nextauth]';
 import { Button, Form, Input } from 'antd';
-import { BotaoLogin, ContainerFormulario } from './style';
+import {
+  BotaoLogin,
+  ContainerFormulario,
+} from '../../Components/StyleLogin/style';
 export default function SignIn() {
   const [form] = Form.useForm();
 
