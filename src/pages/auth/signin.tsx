@@ -15,7 +15,7 @@ export default function SignIn() {
             email: 'rf2014souza@gmail.com',
             senha: '123456',
             redirect: true,
-            callbackUrl: '/Campeonato',
+            callbackUrl: '/',
           })
         }>
         Sign in with
