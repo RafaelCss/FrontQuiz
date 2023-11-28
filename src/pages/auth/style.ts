@@ -1,7 +1,7 @@
 import { Button } from 'antd';
 import styled from 'styled-components';
 
-const ContainerFormulario = styled.div`
+export const ContainerFormulario = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,8 +13,6 @@ const ContainerFormulario = styled.div`
   color: white;
 `;
 
-const BotaoLogin = styled(Button)`
+export const BotaoLogin = styled(Button)`
   width: 20rem;
 `;
-
-export default { ContainerFormulario, BotaoLogin };

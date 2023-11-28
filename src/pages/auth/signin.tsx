@@ -6,7 +6,7 @@ import { getProviders, signIn } from 'next-auth/react';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../api/auth/[...nextauth]';
 import { Button, Form, Input } from 'antd';
-import Style from './style';
+import { BotaoLogin, ContainerFormulario } from './style';
 export default function SignIn() {
   const [form] = Form.useForm();
 
@@ -23,7 +23,7 @@ export default function SignIn() {
   };
 
   return (
-    <Style.ContainerFormulario>
+    <ContainerFormulario>
       <Form form={form}>
         <Form.Item label={'Email'} name={'email'}>
           <Input type="email" />
@@ -32,7 +32,7 @@ export default function SignIn() {
           <Input type="password" />
         </Form.Item>
       </Form>
-      <Button onClick={handleSubmit}>Login</Button>
-    </Style.ContainerFormulario>
+      <BotaoLogin onClick={handleSubmit}>Login</BotaoLogin>
+    </ContainerFormulario>
   );
 }
