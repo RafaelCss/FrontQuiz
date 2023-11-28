@@ -1,5 +1,4 @@
 {
-  "extends": "next/core-web-vitals",
   "parserOptions": {
     "parser": "babel-eslint",
     "parserOptions": {
@@ -7,9 +6,8 @@
       "allowImportExportEverywhere": true
     }
   },
-
+  "extends": ["next/babel", "next/core-web-vitals"],
   "env": {
     "es6": true
   }
 }
-
