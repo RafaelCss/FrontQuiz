@@ -18,7 +18,6 @@ export const authOptions: NextAuthOptions = {
           senha: req?.senha,
         };
         const res = await servico.postLoginUsuario(credentials as any);
-        console.log(res);
         const user = res;
         if (user) {
           return { ...res.user } as any;

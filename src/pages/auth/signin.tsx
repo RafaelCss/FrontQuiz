@@ -6,12 +6,13 @@ import { getProviders, signIn } from 'next-auth/react';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '../api/auth/[...nextauth]';
 import { Button, Form, Input } from 'antd';
-
+import Style from './style';
 export default function SignIn() {
   const [form] = Form.useForm();
 
   const handleSubmit = () => {
     form.validateFields().then((values) => {
+      console.log(values);
       signIn('credentials', {
         email: values.email,
         senha: values.senha,
@@ -22,7 +23,7 @@ export default function SignIn() {
   };
 
   return (
-    <>
+    <Style.ContainerFormulario>
       <Form form={form}>
         <Form.Item label={'Email'} name={'email'}>
           <Input type="email" />
@@ -30,8 +31,8 @@ export default function SignIn() {
         <Form.Item label={'Senha'} name={'senha'}>
           <Input type="password" />
         </Form.Item>
-        <Button onClick={handleSubmit}>Login</Button>
       </Form>
-    </>
+      <Button onClick={handleSubmit}>Login</Button>
+    </Style.ContainerFormulario>
   );
 }
