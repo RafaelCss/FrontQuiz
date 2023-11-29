@@ -4,21 +4,7 @@ import Style from './style';
 import { signIn } from 'next-auth/react';
 
 function Menu() {
-  const listaDeBotoes = [
-    'Home',
-    'Campeonato',
-    'Curiosidades',
-    'Logar',
-    'Download',
-    'Upload',
-    'PDF',
-  ];
-  function logar() {
-    console.log('oi');
-    // signIn('Credentials', {
-    //   redirect: false,
-    // });
-  }
+  const listaDeBotoes = ['Home', 'Campeonato', 'Curiosidades', 'Cadastro'];
   return (
     <Style.ContainerMenu>
       {listaDeBotoes.map((btn) => (

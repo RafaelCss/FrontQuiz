@@ -8,15 +8,12 @@ function PDFView() {
 
   const handleDisplayPDF = async () => {
     try {
-      const response = await axios.get(
-        `https://objectstorage.sa-saopaulo-1.oraclecloud.com/n/grf7xipreir8/b/novoconta-ea/o/TERMOS-E-CONDICOES-ADICIONAIS-PARA-TESTES-GRATUITOS-NA-PLATAFORMA-E-AUDITORIA.pdf`,
-        {
-          headers: {
-            Accept: 'application/pdf',
-          },
-          responseType: 'arraybuffer',
-        }
-      );
+      const response = await axios.get(`https://`, {
+        headers: {
+          Accept: 'application/pdf',
+        },
+        responseType: 'arraybuffer',
+      });
       const blob = new Blob([response.data], {
         type: 'application/pdf',
         endings: 'native',
