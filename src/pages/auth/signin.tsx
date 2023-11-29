@@ -27,7 +27,7 @@ export default function SignIn() {
 
   return (
     <ContainerFormulario>
-      <Form form={form}>
+      <Form form={form} layout="vertical">
         <Form.Item label={'Email'} name={'email'}>
           <Input type="email" />
         </Form.Item>
