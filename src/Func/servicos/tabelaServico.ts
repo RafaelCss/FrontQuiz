@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { ITabelaCampeonato } from '@/Components/Models';
-import servicoAxios from '../lib/hooks/configAxios';
+import { api } from '../lib/hooks/configAxios';
 
 interface ApiResponse<T> {
   success: boolean;
@@ -11,17 +11,10 @@ interface ApiResponse<T> {
   pageIndex: number;
 }
 
-type RespostaTabela = (
-  accessToken: string
-) => Promise<ApiResponse<ITabelaCampeonato[]>>;
+type RespostaTabela = () => Promise<ApiResponse<ITabelaCampeonato[]>>;
 
-const api = servicoAxios();
-const getDadosTabela: RespostaTabela = async (accessToken: string) => {
-  const resposta = await api.get<ApiResponse<ITabelaCampeonato[]>>('tabela', {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
+const getDadosTabela: RespostaTabela = async () => {
+  const resposta = await api.get<ApiResponse<ITabelaCampeonato[]>>('tabela');
   return resposta.data;
 };
 
