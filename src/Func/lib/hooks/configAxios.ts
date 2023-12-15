@@ -6,7 +6,6 @@ export const api: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  // withCredentials: true,
   paramsSerializer: {
     dots: true,
   },
@@ -14,7 +13,6 @@ export const api: AxiosInstance = axios.create({
 
 api.interceptors.request.use(async function (config: any) {
   const session = await getSession();
-  console.log(session?.user?.access_token);
   if (session) {
     config.headers.Authorization = `Bearer ${session?.user?.access_token}`;
   }
