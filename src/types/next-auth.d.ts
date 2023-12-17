@@ -13,6 +13,12 @@ declare module 'next-auth' {
     user?: User;
   }
 
+  export interface JWT {
+    error?: string;
+    accessToken?: string;
+    refreshToken?: string;
+  }
+
   export interface User {
     id: string;
     nome?: string;

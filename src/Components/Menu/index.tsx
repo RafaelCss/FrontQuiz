@@ -19,12 +19,24 @@ function Menu() {
     router.push('/auth/signin');
   }
 
+  const novaListaBotoes = session
+    ? listaDeBotoes.filter((bnt) => bnt !== 'Cadastro')
+    : listaDeBotoes;
+
   return (
     <Style.ContainerMenu>
-      {listaDeBotoes.map((btn) => {
+      {novaListaBotoes.map((btn) => {
         if (session && btn === 'Logout') {
           return (
-            <Style.ButtonMod onClick={() => signOut()}>{btn}</Style.ButtonMod>
+            <Style.ButtonMod
+              onClick={() =>
+                signOut({
+                  redirect: false,
+                  callbackUrl: '/',
+                })
+              }>
+              {btn}
+            </Style.ButtonMod>
           );
         } else if (!session && btn === 'Logout') {
           return (
