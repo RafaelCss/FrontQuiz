@@ -48,7 +48,7 @@ function Formulario() {
           return;
         } else {
           message.error(resposta.message);
-          console.log(resposta.erros);
+          console.error(resposta.erros);
           setErros(transformErrorMessage(resposta.erros as any));
         }
       })
