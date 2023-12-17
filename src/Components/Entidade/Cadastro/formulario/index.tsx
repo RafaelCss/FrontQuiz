@@ -25,12 +25,14 @@ import {
   transformErrorMessage,
 } from '@/Func/lib/utius';
 import Titulo from '@/Components/Container/Titulo/style';
+import { useRouter } from 'next/router';
 
 const placeHolder = (item: string) => `Digite ${item}`;
 const logar = 'Faça Login:';
 const cadastro = 'Realize seu cadastro:';
 function Formulario() {
   const [form] = Form.useForm<Usuario>();
+  const router = useRouter();
   const [erros, setErros] = useState<Dictionary<string[]>>({});
   const [tituloForm, setTituloForm] = useState<string>();
 
@@ -41,6 +43,7 @@ function Formulario() {
         const resposta = await servico.postCadastroUsuario(dados);
         if (resposta.sucesso) {
           message.success('Usuario cadastrado');
+          router.push('/auth/signin');
           setErros({});
           return;
         } else {

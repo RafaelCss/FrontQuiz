@@ -31,7 +31,7 @@ function Menu() {
             <Style.ButtonMod
               onClick={() =>
                 signOut({
-                  redirect: false,
+                  redirect: true,
                   callbackUrl: '/',
                 })
               }>
