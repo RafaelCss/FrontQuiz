@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Corrosel = styled.div`
+const CardMod = styled.div`
   display: flex;
   flex-direction: row;
   gap: 2px;
@@ -22,4 +22,4 @@ const TituloHome = styled.h1`
   font-family: 'Tilt Warp', cursive;
   font-weight: 200;
 `;
-export { Corrosel, Container, TituloHome };
+export { CardMod, Container, TituloHome };
