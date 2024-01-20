@@ -44,7 +44,7 @@ const CardAnimado = ({ imagemCaminho }: PropsCardAnimado) => {
             width={100}
             height={100}
           />
-          <InfoCircleOutlined rev={undefined} checked />
+          <InfoCircleOutlined rev={undefined} />
         </div>
       </div>
       <div

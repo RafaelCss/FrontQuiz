@@ -2,44 +2,50 @@
 import NextAuth, { NextAuthOptions, Session } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import servico from '@/Func/servicos/usuarioServico';
+import axios from 'axios';
 
-// async function refreshAccessToken(token: any) {
-//   try {
-//     const url =
-//       'https://oauth2.googleapis.com/token?' +
-//       new URLSearchParams({
-//         grant_type: 'refresh_token',
-//         refresh_token: token.refreshToken,
-//       });
+async function refreshAccessToken(token: any) {
+  try {
+    const url =
+      'http://localhost:3001/api/refresh-token?' +
+      new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: 'Bearer ' + token.user.refresh_token,
+      });
 
-//     const response = await fetch(url, {
-//       headers: {
-//         'Content-Type': 'application/x-www-form-urlencoded',
-//       },
-//       method: 'POST',
-//     });
+    const response = await axios
+      .post(url, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then((res) => res.data);
 
-//     const refreshedTokens = await response.json();
+    if (!response) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
 
-//     if (!response.ok) {
-//       throw refreshedTokens;
-//     }
+    const refreshedTokens = response;
 
-//     return {
-//       ...token,
-//       accessToken: refreshedTokens.access_token,
-//       accessTokenExpires: Date.now() + refreshedTokens.expires_in * 1000,
-//       refreshToken: refreshedTokens.refresh_token ?? token.refreshToken, // Fall back to old refresh token
-//     };
-//   } catch (error) {
-//     console.log(error);
+    if (!response) {
+      throw refreshedTokens;
+    }
 
-//     return {
-//       ...token,
-//       error: 'RefreshAccessTokenError',
-//     };
-//   }
-// }
+    return {
+      ...token.user,
+      accessToken: refreshedTokens.access_token,
+      accessTokenExpires: Date.now() + refreshedTokens.expires * 1000,
+      refreshToken: refreshedTokens.refresh_token ?? token.refreshToken, // Fall back to old refresh token
+    };
+  } catch (error) {
+    console.log(error);
+
+    return {
+      ...token,
+      error: 'RefreshAccessTokenError',
+    };
+  }
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -58,7 +64,7 @@ export const authOptions: NextAuthOptions = {
         const res = await servico.postLoginUsuario(credentials as any);
         const user = res;
         if (user) {
-          return { ...res.user } as any;
+          return { ...res } as any;
         }
         return null;
       },
@@ -74,31 +80,31 @@ export const authOptions: NextAuthOptions = {
 
   callbacks: {
     async session({ session, token, user }) {
+      const newToken: Session = token as any;
       const newSession = {
-        ...session,
-        user: token.user,
-        accessToken: token.accessToken,
-        expires: token.accessTokenExpires,
+        accessToken: newToken.user?.access_token as any,
+        expires: newToken.user?.expires,
         error: token.error,
-      } as Session;
+      } as any;
+
       return newSession;
     },
     async jwt({ token, account, profile, user, session }) {
+      const newToken: Session = token as any;
       if (account && user) {
         return {
           accessToken: account.access_token,
-          //accessTokenExpires: account.expires_at * 1000,
+          accessTokenExpires: newToken?.refresh_token_expires * 1000,
           refreshToken: account.refresh_token,
           user,
         };
       }
       // Return previous token if the access token has not expired yet
-      // if (Date.now() < token.accessTokenExpires) {
-      //   return token;
-      // }
-
+      if (Date.now() < newToken?.refresh_token_expires * 1000) {
+        return newToken;
+      }
       // Access token has expired, try to update it
-      return token;
+      return await refreshAccessToken(newToken);
     },
     redirect({ url, baseUrl }) {
       // Allows relative callback URLs

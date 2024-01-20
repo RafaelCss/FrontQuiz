@@ -11,12 +11,17 @@ declare module 'next-auth' {
     accessTokenExpires?: ISODateString;
     refreshToken?: string;
     user?: User;
+    expires: number;
+    refresh_token_expires: number;
+    refresh_token: string;
   }
 
   export interface JWT {
-    error?: string;
+    access_token?: string;
     accessToken?: string;
-    refreshToken?: string;
+    expires: number;
+    refresh_token_expires?: number;
+    accessTokenExpires?: number;
   }
 
   export interface User {
@@ -24,6 +29,12 @@ declare module 'next-auth' {
     nome?: string;
     email: string;
     role: string[];
+    expires: number;
+    accessToken?: string;
+    user?: {
+      access_token?: string;
+    };
     access_token?: string;
+    refresh_token_expires: number;
   }
 }
