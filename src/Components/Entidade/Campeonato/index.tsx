@@ -62,7 +62,6 @@ function TabelaCampeonato() {
                     <>
                       {item === 'd' && (
                         <CloseOutlined
-                          rev={{}}
                           style={{
                             color: '#f80808',
                             fontSize: '13px',
@@ -72,7 +71,6 @@ function TabelaCampeonato() {
                       )}
                       {item === 'v' && (
                         <CheckOutlined
-                          rev={{}}
                           style={{
                             color: '#52c41a',
                             fontSize: '12px',
@@ -82,7 +80,6 @@ function TabelaCampeonato() {
                       )}
                       {item === 'e' && (
                         <MinusCircleOutlined
-                          rev={{}}
                           style={{
                             color: '#afb1aedb',
                             fontSize: '12px',
