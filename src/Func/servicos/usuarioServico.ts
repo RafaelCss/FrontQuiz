@@ -12,8 +12,8 @@ const postCadastroUsuario: CadastroUsuario = async (
 ): Promise<Retorno<Usuario>> => {
   return await api
     .post<Retorno<Usuario>>('cadastro', dados)
-    .then((res) => res.data)
-    .catch((err) => err);
+    .then((res: any) => res.data)
+    .catch((err: any) => err);
 };
 
 const postLoginUsuario: LoginUsuario = async (
@@ -21,8 +21,8 @@ const postLoginUsuario: LoginUsuario = async (
 ): Promise<RetornoToken> => {
   return await api
     .post<Retorno<Usuario>>('login', dados)
-    .then((res) => res.data)
-    .catch((err) => err);
+    .then((res: any) => res.data)
+    .catch((err: any) => err);
 };
 
 const logarOuCadastrar: LogarOuCadastrar = async (
