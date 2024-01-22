@@ -32,7 +32,7 @@ async function refreshAccessToken(token: any) {
     }
 
     return {
-      ...token.user,
+      ...token,
       accessToken: refreshedTokens.access_token,
       accessTokenExpires: Date.now() + refreshedTokens.expires * 1000,
       refreshToken: refreshedTokens.refresh_token ?? token.refreshToken, // Fall back to old refresh token
@@ -82,6 +82,7 @@ export const authOptions: NextAuthOptions = {
     async session({ session, token, user }) {
       const newToken: Session = token as any;
       const newSession = {
+        ...newToken.user?.user,
         accessToken: newToken.user?.access_token as any,
         expires: newToken.user?.expires,
         error: token.error,
@@ -91,11 +92,11 @@ export const authOptions: NextAuthOptions = {
     },
     async jwt({ token, account, profile, user, session }) {
       const newToken: Session = token as any;
-      if (account && user) {
+      if (token) {
         return {
-          accessToken: account.access_token,
+          accessToken: newToken.accessToken,
           accessTokenExpires: newToken?.refresh_token_expires * 1000,
-          refreshToken: account.refresh_token,
+          refreshToken: newToken.refresh_token,
           user,
         };
       }
