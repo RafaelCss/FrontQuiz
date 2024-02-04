@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth, { DefaultUser } from 'next-auth';
 
 declare module 'next-auth' {
   /**
@@ -6,14 +6,13 @@ declare module 'next-auth' {
    */
 
   export interface Session {
-    error?: string;
-    accessToken?: string;
-    accessTokenExpires?: ISODateString;
-    refreshToken?: string;
-    user?: User;
-    expires: number;
-    refresh_token_expires: number;
-    refresh_token: string;
+    user: {
+      id?: string;
+      name: string;
+      email: string;
+      access_token?: string;
+      accessToken?: string;
+    };
   }
 
   export interface JWT {
@@ -26,14 +25,10 @@ declare module 'next-auth' {
 
   export interface User {
     id: string;
-    nome?: string;
+    name?: string;
     email: string;
     role: string[];
     expires: number;
-    accessToken?: string;
-    user?: {
-      access_token?: string;
-    };
     access_token?: string;
     refresh_token_expires: number;
   }
