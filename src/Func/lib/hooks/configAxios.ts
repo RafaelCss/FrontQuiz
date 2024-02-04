@@ -12,10 +12,9 @@ export const api: AxiosInstance = axios.create({
 });
 
 api.interceptors.request.use(async function (config: any) {
-  const session = await getSession();
-  console.log(session);
-  if (session) {
-    config.headers.Authorization = `Bearer ${session?.accessToken}`;
+  const session: any = await getSession();
+  if (session?.session?.accessToken) {
+    config.headers.Authorization = `Bearer ${session?.session?.accessToken}`;
   }
 
   return config as any;

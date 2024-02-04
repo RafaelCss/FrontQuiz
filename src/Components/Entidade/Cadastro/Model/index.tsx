@@ -12,6 +12,10 @@ export interface RetornoToken {
     email?: string;
     token_type?: 'Bearer';
   };
+  access_token: string;
+  name?: string;
+  email?: string;
+  token_type?: 'Bearer';
   token?: {
     access_token: string;
     refresh_token_expires: number;
