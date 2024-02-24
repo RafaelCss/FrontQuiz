@@ -40,7 +40,7 @@ function Menu() {
           );
         } else if (!session && btn === 'Logout') {
           return (
-            <Style.ButtonMod onClick={() => redirectLogin()}>
+            <Style.ButtonMod key={btn} onClick={() => redirectLogin()}>
               {'Login'}
             </Style.ButtonMod>
           );
@@ -50,7 +50,7 @@ function Menu() {
               key={btn}
               href={btn === 'Home' ? '/' : btn}
               style={{ textDecoration: 'none' }}>
-              <Style.ButtonMod>{btn}</Style.ButtonMod>
+              <Style.ButtonMod key={btn}>{btn}</Style.ButtonMod>
             </Link>
           );
         }
