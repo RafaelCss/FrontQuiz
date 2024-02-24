@@ -1,5 +1,5 @@
-export default async function GET(request: Request) {
-  const response = async () =>
+export default function handler(request: any, response: any) {
+  const responseFn = async () =>
     await fetch(
       `${process.env.NEXT_PUBLIC_URL_API_URL_CONNECT}/tabela/atualizar-tabela`,
       {
@@ -10,5 +10,7 @@ export default async function GET(request: Request) {
       }
     );
 
-  console.log(response());
+  console.log(responseFn());
+
+  response.status(200).end('Hello Cron!');
 }
