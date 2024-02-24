@@ -8,13 +8,4 @@ export default async function GET(request: Request) {
       },
     }
   );
-
-  if (!response.ok) {
-    throw new Error('Erro ao cadastrar usuário');
-  }
-
-  const data = await response.json();
-  return new Response(`Hello from ${process.env.VERCEL_REGION}`, {
-    status: 200,
-  });
 }
