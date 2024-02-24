@@ -19,8 +19,10 @@
     "Servico",
     "signin",
     "ultimos",
+    "utius",
     "variacao"
   ],
   "dotenv.enableAutocloaking": false,
-  "cSpell.language": "en,pt"
+  "cSpell.language": "en,pt",
+  "CodeGPT.apiKey": "CodeGPT Plus Beta"
 }

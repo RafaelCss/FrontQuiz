@@ -1,44 +1,30 @@
-'use client';
+'use server';
 import NextAuth, { NextAuthOptions, Session } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import servico from '@/Func/servicos/usuarioServico';
 import axios from 'axios';
 
+// Função para atualizar o token de acesso
 async function refreshAccessToken(token: any) {
   try {
-    const url =
-      'http://localhost:3001/api/refresh-token?' +
-      new URLSearchParams({
-        grant_type: 'refresh_token',
-        refresh_token: 'Bearer ' + token.user.refresh_token,
-      });
+    const url = `http://localhost:3001/api/refresh-token?${new URLSearchParams({
+      grant_type: 'refresh_token',
+      refresh_token: 'Bearer ' + token.refresh_token,
+    })}`;
 
-    const response = await axios
-      .post(url, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-      .then((res) => res.data);
-
-    if (!response) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const refreshedTokens = response;
-
-    if (!response) {
-      throw refreshedTokens;
-    }
+    const response = await axios.post(url, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const refreshedTokens = response.data;
 
     return {
       ...token,
       accessToken: refreshedTokens.access_token,
       accessTokenExpires: Date.now() + refreshedTokens.expires * 1000,
-      refreshToken: refreshedTokens.refresh_token ?? token.refreshToken, // Fall back to old refresh token
+      refreshToken: refreshedTokens.refresh_token ?? token?.refresh_token,
     };
   } catch (error) {
-    console.log(error);
+    console.error(error);
 
     return {
       ...token,
@@ -47,7 +33,8 @@ async function refreshAccessToken(token: any) {
   }
 }
 
-export const authOptions: NextAuthOptions = {
+// Configurações do NextAuth
+const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -56,17 +43,25 @@ export const authOptions: NextAuthOptions = {
         senha: { label: 'senha', type: 'password' },
       },
       type: 'credentials',
-      async authorize(req) {
-        const credentials = {
-          email: req?.email,
-          senha: req?.senha,
+      async authorize(credentials, req) {
+        const credentialsObj = {
+          email: credentials?.email,
+          senha: credentials?.senha,
         };
-        const res = await servico.postLoginUsuario(credentials as any);
-        const user = res;
-        if (user) {
-          return { ...res } as any;
+
+        try {
+          const res = await servico.postLoginUsuario(credentialsObj as any);
+          const user = res as any;
+
+          if (res) {
+            return user as any;
+          }
+
+          return null;
+        } catch (error) {
+          console.error(error);
+          return null;
         }
-        return null;
       },
     }),
   ],
@@ -77,40 +72,25 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/auth/signin',
   },
-
   callbacks: {
-    async session({ session, token, user }) {
-      const newToken: Session = token as any;
-      const newSession = {
-        ...newToken.user?.user,
-        accessToken: newToken.user?.access_token as any,
-        expires: newToken.user?.expires,
-        error: token.error,
-      } as any;
-
-      return newSession;
-    },
-    async jwt({ token, account, profile, user, session }) {
-      const newToken: Session = token as any;
-      if (token) {
-        return {
-          accessToken: newToken.accessToken,
-          accessTokenExpires: newToken?.refresh_token_expires * 1000,
-          refreshToken: newToken.refresh_token,
-          user,
-        };
-      }
-      // Return previous token if the access token has not expired yet
-      if (Date.now() < newToken?.refresh_token_expires * 1000) {
-        return newToken;
+    async jwt({ token, user }) {
+      const newToken: any = token as any;
+      //TODO: Se em teste não criar a sessão retornar somente o token e estudar o refreshToken
+      user && (token.user = user);
+      if (Date.now() < newToken?.user?.refresh_token_expires * 1000) {
+        return token;
       }
       // Access token has expired, try to update it
-      return await refreshAccessToken(newToken);
+      return await refreshAccessToken(newToken?.user);
+      //return token;
     },
+    async session({ session, token }) {
+      session = token.user as any;
+      return session;
+    },
+
     redirect({ url, baseUrl }) {
-      // Allows relative callback URLs
       if (url.startsWith('/')) return `${url}`;
-      // Allows callback URLs on the same origin
       else if (new URL(url).origin === baseUrl) return url;
       return baseUrl;
     },
