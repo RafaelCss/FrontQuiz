@@ -1,6 +1,6 @@
 export default async function GET(request: Request) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL_API_URL_CONNECT}/atualizar-tabela`,
+    `${process.env.NEXT_PUBLIC_URL_API_URL_CONNECT}/tabela/atualizar-tabela`,
     {
       method: 'GET',
       headers: {
