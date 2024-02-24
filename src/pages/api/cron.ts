@@ -8,7 +8,5 @@ export default async function handler(request: any, response: any) {
       },
     }
   );
-  const retorno = await responseFn.json();
-
-  response.status(200).end('Hello Cron!', retorno);
+  response.status(200).end('Hello Cron!');
 }
