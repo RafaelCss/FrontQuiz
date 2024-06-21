@@ -2,8 +2,9 @@ import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import { Avatar, List, Space } from 'antd';
 import React from 'react';
 import ContainerLista from '../../Container/Lista/style';
+import Arvore from './Arvore';
 
-const data = Array.from({ length: 23 }).map((_, i) => ({
+export const data = Array.from({ length: 23 }).map((_, i) => ({
   href: 'https://ant.design',
   title: `ant design part ${i}`,
   avatar: `https://joesch.moe/api/v1/random?key=${i}`,
@@ -21,7 +22,11 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
 );
 
 function ListaPerguntas() {
-  return <ContainerLista></ContainerLista>;
+  return (
+    <ContainerLista>
+      <Arvore />
+    </ContainerLista>
+  );
 }
 
 export default ListaPerguntas;

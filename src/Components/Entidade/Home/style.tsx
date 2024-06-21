@@ -1,6 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const CardMod = styled.div`
+type CardProps = { type: 'primary' };
+
+const CardMod = styled.div<CardProps>`
+  ${(props) =>
+    props.type == 'primary' &&
+    css`
+      background-color: #f2f3f8;
+      border-color: #999;
+      box-shadow: 0 0 5px rgba(243, 7, 7, 0.973);
+    `}
+
   display: flex;
   flex-direction: row;
   gap: 2px;
